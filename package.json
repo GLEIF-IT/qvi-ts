@@ -1,0 +1,43 @@
+{
+  "name": "qvi-ts",
+  "version": "0.1.0",
+  "description": "An SDK for QVIs in the vLEI ecosystem",
+  "main": "index.js",
+  "scripts": {
+    "test": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/inversify/inversify-basic-example.git"
+  },
+  "keywords": [
+    "keri",
+    "acdc",
+    "cesr",
+    "signify"
+  ],
+  "author": "Kevin Griffin",
+  "license": "APACHE-2.0",
+  "bugs": {
+    "url": "https://github.com/GLEIF-IT/qvi-ts/issues"
+  },
+  "homepage": "https://github.com/GLEIF-IT/qvi-ts",
+  "dependencies": {
+    "inversify": "5.0.1",
+    "reflect-metadata": "0.1.13",
+    "signify-ts": "https://github.com/WebOfTrust/signify-ts#development"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.4",
+    "gulp": "4.0.2",
+    "gulp-tslint": "8.1.4",
+    "gulp-typescript": "5.0.1",
+    "jest": "^29.6.4",
+    "gulp-jest": "^4.0.4",
+    "run-sequence": "2.2.1",
+    "ts-jest": "^29.1.1",
+    "tslint": "5.19.0",
+    "typescript": "3.5.3",
+    "updates": "^8.5.3"
+  }
+}
