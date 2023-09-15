@@ -35,7 +35,10 @@ jobs:
         uses: borales/actions-yarn@v4
         with:
           cmd: install
-  
+
+      - name: clean
+        run: yarn cache clean
+
       - name: Lint
         run: yarn lint
 
