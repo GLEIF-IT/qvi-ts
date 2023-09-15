@@ -26,9 +26,16 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
 
-      - name: Install deps and build (with cache)
-        uses: bahmutov/npm-install@v1
+      - name: Set Node.js 18.16.0
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.16.0
 
+      - name: Run install
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: install
+  
       - name: Lint
         run: yarn lint
 
