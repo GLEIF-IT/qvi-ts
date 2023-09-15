@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
 jobs:
   build:
-    name: Build, lint, and test on Node 18.12.1 and ${{ matrix.os }}
+    name: Build, lint, and test on Node 18.16.0 and ${{ matrix.os }}
 
     runs-on: ${{ matrix.os }}
     strategy:
@@ -21,10 +21,6 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
-
-      - uses: actions/setup-node@v2
-        with:
-          node-version: ${{ matrix.node }}
 
       - name: Set Node.js 18.16.0
         uses: actions/setup-node@v3

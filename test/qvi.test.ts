@@ -1,5 +1,8 @@
+import {QVI} from "../src";
+
 describe("a qvi", () => {
     it("should have schema", () => {
-        expect(true).toEqual(true);
+        let qvi = new QVI("my_alias", "qvi_registry", "registry_nonce");
+        console.log(qvi);
     });
 });

@@ -2,7 +2,7 @@ import {SignifyClient} from "signify-ts";
 import {DONE, NAME, RESPONSE} from "../operations";
 
 
-import LE from "../schema/legal-entity-vLEI-credential.json";
+// import LE from "../schema/legal-entity-vLEI-credential.json";
 export class QVI {
     public readonly SCHEMA_CACHE: { LEGAL_ENTITY: any; };
     private readonly alias: string;
@@ -14,7 +14,7 @@ export class QVI {
         this.alias = alias;
         this.registryName = registryName;
         this.registryNonce = registryNonce;
-
+        let LE = {};
         this.SCHEMA_CACHE = {
             LEGAL_ENTITY: {
                 LE: LE,
