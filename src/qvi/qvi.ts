@@ -116,7 +116,7 @@ export class QVI {
         alias: string,
         recipient: string,
         credentialData:ECRVLEICredential,
-        source: ECR_AUTH_EDGES| ECR_LE_EDGES, //TODO: I believe the only input requiresd should be either the said of the auth credential or the said of the vlei credential 
+        source: ECR_AUTH_EDGES| ECR_LE_EDGES, //TODO: I believe the only input requiresd should be either the said of the auth credential or the said of the vlei credential. NOTE:I am not sure it makes sense to add the ECR_LE_EDGE since the LE would issue credentials to themselves 
         _private?: boolean
     ) {
         return await client
