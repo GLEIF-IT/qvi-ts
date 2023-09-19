@@ -1,0 +1,41 @@
+name: Run Tests
+on:
+  push:
+    branches:
+      - 'main'
+      - 'development'
+  pull_request:
+    branches:
+      - 'main'
+      - 'development'
+  workflow_dispatch:
+jobs:
+  build:
+    name: Build, lint, and test on Node 18.16.0 and ${{ matrix.os }}
+
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ macOS-latest, ubuntu-latest]
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Set Node.js 18.16.0
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.16.0
+
+      - name: Run install
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: install
+
+      - name: Test
+        run: yarn test --ci --coverage --maxWorkers=2
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}

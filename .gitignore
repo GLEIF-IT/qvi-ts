@@ -7,6 +7,8 @@
 !.yarn/sdks
 !.yarn/versions
 
+coverage/
+
 # editors
 .vscode
 .idea
