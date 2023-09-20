@@ -1,7 +1,9 @@
 import { SignifyClient, Dict } from "signify-ts";
+
 const DONE = "done";
 const NAME = "name";
 const RESPONSE = "response";
+
 export const getKeriaOperationResult = async (
     client: SignifyClient,
     op: any,
