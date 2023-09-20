@@ -13,4 +13,9 @@ coverage/
 .vscode
 .idea
 
+<<<<<<< HEAD
 node_modules/
+=======
+node_modules/
+package-lock.json
+>>>>>>> 73db257 (adds rules namespace)
