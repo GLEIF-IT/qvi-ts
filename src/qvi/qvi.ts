@@ -1,4 +1,4 @@
-import { SignifyClient, Tier, Siger, messagize, d } from "signify-ts";
+import { SignifyClient, Siger, messagize, d } from "signify-ts";
 import { getKeriaOperationResult, sendKeriaMessage } from "../operations";
 
 import LE from "../schema/legal-entity-vLEI-credential.json";
@@ -11,9 +11,9 @@ export class QVI {
     private readonly registry_name: string = "qvi_issuer_registry";
     private readonly qvi_aid_name: string = "qvi_aid";
 
-    constructor(passcode: string, keriaUrl: string, tier: Tier, keriaBootUrl: string) {
-        this.client = new SignifyClient(passcode, keriaUrl, tier, keriaBootUrl);
-
+    constructor(client: SignifyClient) {
+        this.client = client;
+        
         this.SCHEMA_CACHE = {
             LEGAL_ENTITY: {
                 LE: LE,
@@ -85,6 +85,7 @@ export class QVI {
                 _private
             );
     }
+
     public async sendLegalEntityCredential(
         alias: string,
         recipient: string,
@@ -107,10 +108,11 @@ export class QVI {
                 }
                 await new Promise(resolve => setTimeout(resolve, 100));
             }
-        
-            let res = await this.client.credentials().getRequest(msgSaid)
-            let exn = res[0].exn
-            credential = exn.e.cred
+            
+            
+            // let res = await this.client.credentials().getRequest(msgSaid)
+            // let exn = res[0].exn
+            // credential = exn.e.cred
         }
 
         let serder = credential.serder
