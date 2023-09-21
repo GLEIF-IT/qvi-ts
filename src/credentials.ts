@@ -1,20 +1,36 @@
+import { Saider } from 'signify-ts';
 import { Schema } from './schema';
 
-export interface LEvLEICredential {
-    i: string;
-    dt: string;
-    LEI: string;
-}
-export interface LEvLEIEdges {
-    d: string;
-    qvi: QVIvLEIEdge;
-}
-export interface QVIvLEIEdge {
-    n: string;
-    s: typeof Schema.QVI;
+export class LEvLEICredentialData {
+    readonly LEI: string;
+
+    constructor(LEI: string) {
+        this.LEI = LEI;
+    }
 }
 
-export interface ECRvLEICredential {
+export class LEvLEICredentialEdge {
+    readonly d: string;
+    readonly qvi: QVIvLEIEdge;
+
+    constructor(qviAID: string) {
+        this.qvi = new QVIvLEIEdge(qviAID);
+        // this needs to be better
+        this.d = Saider.saidify({ d: '', qvi: this.qvi })[1]['d'];
+    }
+}
+
+export class QVIvLEIEdge {
+    n: string;
+    s: string;
+
+    constructor(qviAID: string) {
+        this.n = qviAID;
+        this.s = Schema.QVI;
+    }
+}
+
+export interface ECRvLEICredentialData {
     i: string;
     dt: string;
     LEI: string;
