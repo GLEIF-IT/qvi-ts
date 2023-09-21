@@ -1,54 +1,54 @@
-export interface LEVLEICredential {
+export interface LEvLEICredential {
     i: string;
     dt: string;
     LEI: string;
 }
-export interface LE_VLEI_EDGES {
+export interface LEvLEIEdges {
     d: string,
-    qvi: QVI_VLEI_EDGE
+    qvi: QVIvLEIEdge
 }
-export interface QVI_VLEI_EDGE {
+export interface QVIvLEIEdge {
     n: string,//issuer of the credential
     s: "EBfdlu8R27Fbx-ehrqwImnK-8Cm79sqbAQ4MmvEAYqao", //subject of the credential
 }
 
-export interface ECRVLEICredential {
+export interface ECRvLEICredential {
     i: string;  // issuer
     dt: string; // date
     LEI: string; // LEI
     personLegalName: string; // person's legal name to which the role is assigned
     engagementContextRole: string; // TODO: find list of roles
 }
-export interface ECR_AUTH_EDGES {
+export interface ECRAuthEdges {
     d: string,
-    auth: ECR_AUTH_EDGE,
+    auth: ECRAuthEdge,
 }
-interface ECR_AUTH_EDGE {
+interface ECRAuthEdge {
     n: string, //SAID of the ACDC to which the edge connects
     s: "EH6ekLjSr8V32WyFbGe1zXjTzFs9PkTYmupJ9H65O14g",
     o: "I2I",
 }
-export interface ECR_LE_EDGES {
+export interface ECRLEEdges {
     d: string,
-    le: ECR_LE_EDGE,
+    le: ECRLEEdge,
 }
-interface ECR_LE_EDGE {
+interface ECRLEEdge {
     n: string, //SAID of the ACDC to which the edge connects
     s: "ENPXp1vQzRF6JwIuS-mp2U8Uf1MoADoP_GqQ62VsDZWY"
 }
 
-export interface OORVLEICredential {
+export interface OORvLEICredential {
     i: string;  // issuer
     dt: string; // date
     LEI: string; // LEI
     personLegalName: string; // person's legal name to which the role is assigned
     officialRole: string; // TODO: find list of roles
 }
-export interface OOR_AUTH_EDGES {
+export interface OORAuthEdges {
     d: string,
-    auth: OOR_AUTH_EDGE,
+    auth: OORAuthEdge,
 }
-interface OOR_AUTH_EDGE {
+interface OORAuthEdge {
     n: string, //SAID of the ACDC to which the edge connects
     s: "EKA57bKBKxr_kN7iN5i7lMUxpMG-s19dRcmov1iDxz-E",
     o: "I2I",
