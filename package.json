@@ -7,7 +7,7 @@
   "packageManager": "yarn@3.6.3",
   "scripts": {
     "test": "jest",
-    "pretty": "prettier --config .prettierrc 'src/**/*.ts' --write"
+    "pretty": "prettier --config .prettierrc 'src/**/*.ts' 'test/**/*.ts' --write"
   },
   "dependencies": {
     "signify-ts": "https://github.com/WebOfTrust/signify-ts#development"

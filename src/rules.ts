@@ -25,7 +25,7 @@ namespace Rules {
         l: string;
     }
 
-    export const LERules = {
+    export const LE = {
         d: Schema.LE,
         usageDisclaimer: {
             l: usageDisclaimer,
@@ -35,7 +35,7 @@ namespace Rules {
         },
     };
 
-    export const ECRRules = {
+    export const ECR = {
         d: Schema.ECR,
         usageDisclaimer: {
             l: usageDisclaimer,
@@ -48,7 +48,7 @@ namespace Rules {
         },
     };
 
-    export const ECRAuthRules = {
+    export const ECRAuth = {
         d: Schema.ECRAuth,
         usageDisclaimer: {
             l: usageDisclaimer,
@@ -61,7 +61,7 @@ namespace Rules {
         },
     };
 
-    export const OORRules = {
+    export const OOR = {
         d: Schema.OOR,
         usageDisclaimer: {
             l: usageDisclaimer,
@@ -71,7 +71,7 @@ namespace Rules {
         },
     };
 
-    export const OORAuthRules = {
+    export const OORAuth = {
         d: Schema.OORAuth,
         usageDisclaimer: {
             l: usageDisclaimer,

@@ -4,7 +4,7 @@ const DONE = 'done';
 const NAME = 'name';
 const RESPONSE = 'response';
 
-export const getKeriaOperationResult = async (
+export const getAgentOperationResult = async (
     client: SignifyClient,
     op: any,
     log: boolean = false,
@@ -21,7 +21,7 @@ export const getKeriaOperationResult = async (
     return op[RESPONSE];
 };
 
-export const sendKeriaMessage = async (
+export const sendAgentMessage = async (
     client: SignifyClient,
     name: string,
     topic: string,

@@ -1,39 +1,68 @@
 import { SignifyClient, Siger, messagize, d } from 'signify-ts';
-import { getKeriaOperationResult, sendKeriaMessage } from '../operations';
-import { Rules } from '../rules';
+import { getAgentOperationResult, sendAgentMessage } from '../operations';
 import { Schema } from '../schema';
+import { LEvLEICredentialData, LEvLEICredentialEdge } from '../credentials';
+import { Rules } from '../rules';
+
+type qb64 = string;
 
 export class QVI {
     private readonly client: SignifyClient;
-    private readonly registry_name: string = 'qvi_issuer_registry';
-    private readonly qvi_aid_name: string = 'qvi_aid';
+    private readonly name: string;
+    private readonly registryAID: qb64;
 
-    constructor(client: SignifyClient) {
+    /**
+     * QVI
+     *
+     * Class for performing QVI opertations:
+     *
+     *  - Create Registry
+     *  - Issue Legal Entity Credential
+     *  - Issue Engagement Context Role Credential
+     *  - Issue Official Organizational Role Credential
+     *
+     * @param client
+     * @param name
+     * @param registryAID
+     */
+    constructor(client: SignifyClient, name: string, registryAID: qb64) {
         this.client = client;
+        this.name = name;
+        this.registryAID = registryAID;
     }
 
+    /**
+     * Create Legal Entity Credential
+     *
+     * QVIs are required to be mutltisig groups by the vLEI Ecosystem Governance Framework
+     *
+     * @param qviAID
+     * @param issuee
+     * @param credentialData
+     * @returns
+     */
     public async createLegalEntityCredential(
-        client: SignifyClient,
-        recipientName: string,
-        credentialData: any,
-        source: any | undefined,
-        _private?: boolean
+        qviAID: qb64,
+        issuee: qb64,
+        LEI: string
     ) {
-        let recipient = await client.identifiers().get(recipientName);
-        recipient = await getKeriaOperationResult(this.client, recipient);
+        let data = new LEvLEICredentialData(LEI);
+        let edge = new LEvLEICredentialEdge(qviAID);
 
-        let registry = await client.registries().list(this.registry_name);
-        return await client.credentials().issue(
-            //create
-            recipientName,
-            registry,
-            Schema.LE,
-            recipient,
-            credentialData,
-            Rules.LERules,
-            source,
-            _private
-        );
+        // replace with signify-ts credential create
+        // should always called with a group AID to create the EXN (signify-ts) and send to others
+        return await this.client
+            .credentials()
+            .issue(
+                this.name,
+                this.registryAID,
+                Schema.LE,
+                issuee,
+                data,
+                Rules.LE,
+                edge,
+                false
+            );
     }
 
     public async sendLegalEntityCredential(
@@ -42,8 +71,8 @@ export class QVI {
         getFromAgent: boolean,
         credential?: any //result for createLegalEntityCredential
     ) {
-        let sender = await this.client.identifiers().get(this.qvi_aid_name);
-        sender = await getKeriaOperationResult(this.client, sender);
+        let sender = await this.client.identifiers().get('');
+        sender = await getAgentOperationResult(this.client, sender);
 
         if (getFromAgent) {
             let msgSaid = '';
@@ -75,7 +104,7 @@ export class QVI {
         let embeds = {
             cred: [serder, atc],
         };
-        return await sendKeriaMessage(
+        return await sendAgentMessage(
             this.client,
             alias,
             'multisig_issuance',
