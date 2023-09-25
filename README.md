@@ -4,6 +4,7 @@
 
 [![codecov](https://codecov.io/gh/m00sey/qvi-ts/graph/badge.svg?token=DKG7H94FLS)](https://codecov.io/gh/m00sey/qvi-ts)
 
+[![Documentation](https://img.shields.io/badge/documentation-grey?)](https://gleif-it.github.io/qvi-ts/)
 
 ### Development
 
