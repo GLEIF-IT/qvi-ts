@@ -20,7 +20,7 @@
 <ul class="tsd-hierarchy">
 <li><span class="target">QVI</span></li></ul></section><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/m00sey/qvi-ts/blob/c63f49d/src/qvi/qvi.ts#L6">qvi/qvi.ts:6</a></li></ul></aside>
+<li>Defined in <a href="https://github.com/GLEIF-IT/qvi-ts/blob/5a5f0b4/src/qvi/qvi.ts#L9">qvi/qvi.ts:9</a></li></ul></aside>
 <section class="tsd-panel-group tsd-index-group">
 <section class="tsd-panel tsd-index-panel">
 <details class="tsd-index-content tsd-index-accordion" open><summary class="tsd-accordion-summary tsd-index-summary">
@@ -33,8 +33,8 @@
 <section class="tsd-index-section">
 <h3 class="tsd-index-heading">Properties</h3>
 <div class="tsd-index-list"><a href="QVI.html#client" class="tsd-index-link tsd-is-private"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>client</span></a>
-<a href="QVI.html#qvi_aid_name" class="tsd-index-link tsd-is-private"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>qvi_<wbr/>aid_<wbr/>name</span></a>
-<a href="QVI.html#registry_name" class="tsd-index-link tsd-is-private"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>registry_<wbr/>name</span></a>
+<a href="QVI.html#name" class="tsd-index-link tsd-is-private"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>name</span></a>
+<a href="QVI.html#registryAID" class="tsd-index-link tsd-is-private"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>registryAID</span></a>
 </div></section>
 <section class="tsd-index-section">
 <h3 class="tsd-index-heading">Methods</h3>
@@ -46,56 +46,75 @@
 <section class="tsd-panel tsd-member"><a id="constructor" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>constructor</span><a href="#constructor" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
-<li class="tsd-signature tsd-anchor-link" id="constructor.new_QVI"><span class="tsd-kind-constructor-signature">new QVI</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">client</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="QVI.html" class="tsd-signature-type tsd-kind-class">QVI</a><a href="#constructor.new_QVI" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
+<li class="tsd-signature tsd-anchor-link" id="constructor.new_QVI"><span class="tsd-kind-constructor-signature">new QVI</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">client</span>, <span class="tsd-kind-parameter">name</span>, <span class="tsd-kind-parameter">registryAID</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="QVI.html" class="tsd-signature-type tsd-kind-class">QVI</a><a href="#constructor.new_QVI" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>QVI</p>
+<p>Class for performing QVI opertations:</p>
+<ul>
+<li>Create Registry</li>
+<li>Issue Legal Entity Credential</li>
+<li>Issue Engagement Context Role Credential</li>
+<li>Issue Official Organizational Role Credential</li>
+</ul>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5><span class="tsd-kind-parameter">client</span>: <span class="tsd-signature-type ">SignifyClient</span></h5></li></ul></div>
-<h4 class="tsd-returns-title">Returns <a href="QVI.html" class="tsd-signature-type tsd-kind-class">QVI</a></h4><aside class="tsd-sources">
+<h5><span class="tsd-kind-parameter">client</span>: <span class="tsd-signature-type ">SignifyClient</span></h5>
+<div class="tsd-comment tsd-typography"></div></li>
+<li>
+<h5><span class="tsd-kind-parameter">name</span>: <span class="tsd-signature-type">string</span></h5>
+<div class="tsd-comment tsd-typography"></div></li>
+<li>
+<h5><span class="tsd-kind-parameter">registryAID</span>: <span class="tsd-signature-type">string</span></h5>
+<div class="tsd-comment tsd-typography"></div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="QVI.html" class="tsd-signature-type tsd-kind-class">QVI</a></h4>
+<div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/m00sey/qvi-ts/blob/c63f49d/src/qvi/qvi.ts#L11">qvi/qvi.ts:11</a></li></ul></aside></li></ul></section></section>
+<li>Defined in <a href="https://github.com/GLEIF-IT/qvi-ts/blob/5a5f0b4/src/qvi/qvi.ts#L28">qvi/qvi.ts:28</a></li></ul></aside></li></ul></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Properties</h2>
 <section class="tsd-panel tsd-member tsd-is-private"><a id="client" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagPrivate">Private</code> <code class="tsd-tag ts-flagReadonly">Readonly</code> <span>client</span><a href="#client" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">client</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type ">SignifyClient</span></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/m00sey/qvi-ts/blob/c63f49d/src/qvi/qvi.ts#L7">qvi/qvi.ts:7</a></li></ul></aside></section>
-<section class="tsd-panel tsd-member tsd-is-private"><a id="qvi_aid_name" class="tsd-anchor"></a>
-<h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagPrivate">Private</code> <code class="tsd-tag ts-flagReadonly">Readonly</code> <span>qvi_<wbr/>aid_<wbr/>name</span><a href="#qvi_aid_name" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
-<div class="tsd-signature"><span class="tsd-kind-property">qvi_<wbr/>aid_<wbr/>name</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &#39;qvi_aid&#39;</span></div><aside class="tsd-sources">
+<li>Defined in <a href="https://github.com/GLEIF-IT/qvi-ts/blob/5a5f0b4/src/qvi/qvi.ts#L10">qvi/qvi.ts:10</a></li></ul></aside></section>
+<section class="tsd-panel tsd-member tsd-is-private"><a id="name" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagPrivate">Private</code> <code class="tsd-tag ts-flagReadonly">Readonly</code> <span>name</span><a href="#name" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
+<div class="tsd-signature"><span class="tsd-kind-property">name</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/m00sey/qvi-ts/blob/c63f49d/src/qvi/qvi.ts#L9">qvi/qvi.ts:9</a></li></ul></aside></section>
-<section class="tsd-panel tsd-member tsd-is-private"><a id="registry_name" class="tsd-anchor"></a>
-<h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagPrivate">Private</code> <code class="tsd-tag ts-flagReadonly">Readonly</code> <span>registry_<wbr/>name</span><a href="#registry_name" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
-<div class="tsd-signature"><span class="tsd-kind-property">registry_<wbr/>name</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &#39;qvi_issuer_registry&#39;</span></div><aside class="tsd-sources">
+<li>Defined in <a href="https://github.com/GLEIF-IT/qvi-ts/blob/5a5f0b4/src/qvi/qvi.ts#L11">qvi/qvi.ts:11</a></li></ul></aside></section>
+<section class="tsd-panel tsd-member tsd-is-private"><a id="registryAID" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagPrivate">Private</code> <code class="tsd-tag ts-flagReadonly">Readonly</code> <span>registryAID</span><a href="#registryAID" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
+<div class="tsd-signature"><span class="tsd-kind-property">registryAID</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/m00sey/qvi-ts/blob/c63f49d/src/qvi/qvi.ts#L8">qvi/qvi.ts:8</a></li></ul></aside></section></section>
+<li>Defined in <a href="https://github.com/GLEIF-IT/qvi-ts/blob/5a5f0b4/src/qvi/qvi.ts#L12">qvi/qvi.ts:12</a></li></ul></aside></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Methods</h2>
 <section class="tsd-panel tsd-member"><a id="createLegalEntityCredential" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>create<wbr/>Legal<wbr/>Entity<wbr/>Credential</span><a href="#createLegalEntityCredential" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
-<li class="tsd-signature tsd-anchor-link" id="createLegalEntityCredential.createLegalEntityCredential-1"><span class="tsd-kind-call-signature">create<wbr/>Legal<wbr/>Entity<wbr/>Credential</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">client</span>, <span class="tsd-kind-parameter">recipientName</span>, <span class="tsd-kind-parameter">credentialData</span>, <span class="tsd-kind-parameter">source</span>, <span class="tsd-kind-parameter">_private</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><a href="#createLegalEntityCredential.createLegalEntityCredential-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
+<li class="tsd-signature tsd-anchor-link" id="createLegalEntityCredential.createLegalEntityCredential-1"><span class="tsd-kind-call-signature">create<wbr/>Legal<wbr/>Entity<wbr/>Credential</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">qviAID</span>, <span class="tsd-kind-parameter">issuee</span>, <span class="tsd-kind-parameter">LEI</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><a href="#createLegalEntityCredential.createLegalEntityCredential-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Create Legal Entity Credential</p>
+<p>QVIs are required to be mutltisig groups by the vLEI Ecosystem Governance Framework</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5><span class="tsd-kind-parameter">client</span>: <span class="tsd-signature-type ">SignifyClient</span></h5></li>
+<h5><span class="tsd-kind-parameter">qviAID</span>: <span class="tsd-signature-type">string</span></h5>
+<div class="tsd-comment tsd-typography"></div></li>
 <li>
-<h5><span class="tsd-kind-parameter">recipientName</span>: <span class="tsd-signature-type">string</span></h5></li>
+<h5><span class="tsd-kind-parameter">issuee</span>: <span class="tsd-signature-type">string</span></h5>
+<div class="tsd-comment tsd-typography"></div></li>
 <li>
-<h5><span class="tsd-kind-parameter">credentialData</span>: <span class="tsd-signature-type">any</span></h5></li>
-<li>
-<h5><span class="tsd-kind-parameter">source</span>: <span class="tsd-signature-type">any</span></h5></li>
-<li>
-<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">_private</span>: <span class="tsd-signature-type">boolean</span></h5></li></ul></div>
-<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<h5><span class="tsd-kind-parameter">LEI</span>: <span class="tsd-signature-type">string</span></h5></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+<div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/m00sey/qvi-ts/blob/c63f49d/src/qvi/qvi.ts#L15">qvi/qvi.ts:15</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/GLEIF-IT/qvi-ts/blob/5a5f0b4/src/qvi/qvi.ts#L44">qvi/qvi.ts:44</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member"><a id="sendLegalEntityCredential" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>send<wbr/>Legal<wbr/>Entity<wbr/>Credential</span><a href="#sendLegalEntityCredential" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -114,7 +133,7 @@
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">credential</span>: <span class="tsd-signature-type">any</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/m00sey/qvi-ts/blob/c63f49d/src/qvi/qvi.ts#L39">qvi/qvi.ts:39</a></li></ul></aside></li></ul></section></section></div>
+<li>Defined in <a href="https://github.com/GLEIF-IT/qvi-ts/blob/5a5f0b4/src/qvi/qvi.ts#L68">qvi/qvi.ts:68</a></li></ul></aside></li></ul></section></section></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -136,8 +155,8 @@
 <ul>
 <li><a href="#constructor" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-512"></use></svg><span>constructor</span></a></li>
 <li><a href="#client" class="tsd-is-private"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>client</span></a></li>
-<li><a href="#qvi_aid_name" class="tsd-is-private"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>qvi_<wbr/>aid_<wbr/>name</span></a></li>
-<li><a href="#registry_name" class="tsd-is-private"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>registry_<wbr/>name</span></a></li>
+<li><a href="#name" class="tsd-is-private"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>name</span></a></li>
+<li><a href="#registryAID" class="tsd-is-private"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>registryAID</span></a></li>
 <li><a href="#createLegalEntityCredential" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>create<wbr/>Legal<wbr/>Entity<wbr/>Credential</span></a></li>
 <li><a href="#sendLegalEntityCredential" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>send<wbr/>Legal<wbr/>Entity<wbr/>Credential</span></a></li></ul></div></details></div>
 <div class="site-menu">
