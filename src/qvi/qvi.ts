@@ -2,13 +2,18 @@ import { SignifyClient, Siger, messagize, d } from 'signify-ts';
 import { getAgentOperationResult, sendAgentMessage } from '../operations';
 import { Schema } from '../schema';
 import { Rules } from '../rules';
+import { LEvLEICredentialData, LEvLEICredentialEdge } from './credentials/le';
+import { ECRvLEIAuthEdge, ECRvLEICredentialData } from './credentials/ecr';
+import { OORvLEICredentialData } from './credentials/oor';
+import { OORAuthvLEICredentialData } from '../le/credentials/oor-auth';
+import { AID } from '..';
 
 type qb64 = string;
 
 export class QVI {
     private readonly client: SignifyClient;
     private readonly name: string;
-    private readonly registryAID: qb64;
+    private readonly registry: qb64;
 
     /**
      * QVI
@@ -20,14 +25,14 @@ export class QVI {
      *  - Issue Engagement Context Role Credential
      *  - Issue Official Organizational Role Credential
      *
-     * @param client
-     * @param name
-     * @param registryAID
+     * @param {SignifyClient} client
+     * @param {string} name
+     * @param {qb64} registry
      */
-    constructor(client: SignifyClient, name: string, registryAID: qb64) {
+    constructor(client: SignifyClient, name: string, registry: qb64) {
         this.client = client;
         this.name = name;
-        this.registryAID = registryAID;
+        this.registry = registry;
     }
 
     /**
@@ -35,13 +40,13 @@ export class QVI {
      *
      * QVIs are required to be mutltisig groups by the vLEI Ecosystem Governance Framework
      *
-     * @param qviAID
-     * @param issuee
-     * @param credentialData
+     * @param {AID} issuee
+     * @param {LEvLEICredentialData} data
+     * @param {LEvLEICredentialEdge} edge}
      * @returns
      */
     public async createLegalEntityCredential(
-        issuee: string,
+        issuee: AID,
         data: LEvLEICredentialData,
         edge: LEvLEICredentialEdge
     ) {
@@ -49,7 +54,7 @@ export class QVI {
             .credentials()
             .issue(
                 this.name,
-                this.registryAID,
+                this.registry,
                 Schema.LE,
                 issuee,
                 data,
@@ -62,21 +67,21 @@ export class QVI {
     /**
      * Create Engagement Context Role Credential
      *
-     * @param qviAID
-     * @param issuee
-     * @param credentialData
+     * @param {AID} issuee
+     * @param {ECRvLEICredentialData} data
+     * @param {ECRvLEIAuthEdge} edge
      * @returns
      */
     public async createEngagementContextRoleCredential(
+        issuee: AID,
         data: ECRvLEICredentialData,
-        edge: ECRvLEIAuthEdge,
-        issuee: string
+        edge: ECRvLEIAuthEdge
     ) {
         return await this.client
             .credentials()
             .issue(
                 this.name,
-                this.registryAID,
+                this.registry,
                 Schema.ECR,
                 issuee,
                 data,
@@ -89,21 +94,21 @@ export class QVI {
     /**
      * Create Official Organizational Role Credential
      *
-     * @param qviAID
-     * @param issuee
-     * @param credentialData
+     * @param {AID} issuee
+     * @param {OORvLEICredentialData}data``
+     * @param {OORAuthvLEICredentialData} edge
      * @returns
      */
     public async createOfficialOrganizationRoleCredential(
+        issuee: AID,
         data: OORvLEICredentialData,
-        edge: OOR,
-        issuee: string
+        edge: OORAuthvLEICredentialData
     ) {
         return await this.client
             .credentials()
             .issue(
                 this.name,
-                this.registryAID,
+                this.registry,
                 Schema.OOR,
                 issuee,
                 data,

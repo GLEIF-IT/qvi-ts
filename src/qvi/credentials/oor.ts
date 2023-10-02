@@ -19,8 +19,12 @@ export interface OORAuthEdges {
     auth: OORvLEIAuthEdge;
 }
 
-interface OORvLEIAuthEdge {
-    n: string; //SAID of the ACDC to which the edge connects
-    s: 'EKA57bKBKxr_kN7iN5i7lMUxpMG-s19dRcmov1iDxz-E';
-    o: 'I2I';
+export class OORvLEIAuthEdge {
+    readonly n: string; // AID of the issuing Legal Entity
+    readonly s: string = 'EKA57bKBKxr_kN7iN5i7lMUxpMG-s19dRcmov1iDxz-E';
+    readonly o: string = 'I2I';
+
+    constructor(legalEntityAID: string) {
+        this.n = legalEntityAID;
+    }
 }
