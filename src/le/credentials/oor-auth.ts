@@ -1,6 +1,15 @@
 import { Saider } from 'signify-ts';
 import { AID } from '../../index';
 
+export interface OORAuthvLEICredentialArgs {
+    readonly qviAID: AID;
+    readonly timestamp: string;
+    readonly recipient: AID;
+    readonly LEI: string;
+    readonly personLegalName: string;
+    readonly officialOrganizationalRole: string;
+}
+
 export class OORAuthvLEICredentialData {
     readonly d: string;
     readonly i: AID;
@@ -10,14 +19,14 @@ export class OORAuthvLEICredentialData {
     readonly personLegalName: string;
     readonly officialOrganizationalRole: string;
 
-    constructor(
-        qviAID: AID,
-        timestamp: string,
-        recipient: AID,
-        LEI: string,
-        personLegalName: string,
-        officialOrganizationalRole: string
-    ) {
+    constructor({
+        qviAID,
+        timestamp,
+        recipient,
+        LEI,
+        personLegalName,
+        officialOrganizationalRole,
+    }: OORAuthvLEICredentialArgs) {
         this.i = qviAID;
         this.dt = timestamp;
         this.AID = recipient;

@@ -3,7 +3,10 @@ import { describe, expect, it } from '@jest/globals';
 import { anyOfClass, capture, instance, mock, verify, when } from 'ts-mockito';
 import { QVI } from '../src';
 import { Rules } from '../src/rules';
-import { LEvLEICredentialData, LEvLEICredentialEdge } from '../src/qvi/credentials/le';
+import {
+    LEvLEICredentialData,
+    LEvLEICredentialEdge,
+} from '../src/qvi/credentials/le';
 
 describe('a qvi', () => {
     it('should create legal entity credential', () => {
@@ -15,7 +18,7 @@ describe('a qvi', () => {
         let client = instance(mockedClient);
         let qvi = new QVI(client, 'qvi_name', 'qvi_registry_aid');
         let data = new LEvLEICredentialData('an LEI');
-        let edge = new LEvLEICredentialEdge('qvi_aid')
+        let edge = new LEvLEICredentialEdge('qvi_aid');
 
         qvi.createLegalEntityCredential('issuee aid', data, edge);
 

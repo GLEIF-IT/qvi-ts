@@ -1,6 +1,15 @@
 import { Saider } from 'signify-ts';
 import { AID } from '../../index';
 
+export interface ECRAuthvLEICredentialArgs {
+    readonly qviAID: AID;
+    readonly timestamp: string;
+    readonly recipient: AID;
+    readonly LEI: string;
+    readonly personLegalName: string;
+    readonly engagementContextRole: string;
+}
+
 export class ECRAuthvLEICredentialData {
     readonly d: string;
     readonly i: AID;
@@ -10,14 +19,14 @@ export class ECRAuthvLEICredentialData {
     readonly personLegalName: string;
     readonly engagementContextRole: string;
 
-    constructor(
-        qviAID: AID,
-        timestamp: string,
-        recipient: AID,
-        LEI: string,
-        personLegalName: string,
-        engagementContextRole: string
-    ) {
+    constructor({
+        qviAID,
+        timestamp,
+        recipient,
+        LEI,
+        personLegalName,
+        engagementContextRole,
+    }: ECRAuthvLEICredentialArgs) {
         this.i = qviAID;
         this.dt = timestamp;
         this.AID = recipient;
