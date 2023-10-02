@@ -1,7 +1,6 @@
 import { SignifyClient, Siger, messagize, d } from 'signify-ts';
 import { getAgentOperationResult, sendAgentMessage } from '../operations';
 import { Schema } from '../schema';
-import { LEvLEICredentialData, LEvLEICredentialEdge } from '../credentials';
 import { Rules } from '../rules';
 
 type qb64 = string;
@@ -42,15 +41,10 @@ export class QVI {
      * @returns
      */
     public async createLegalEntityCredential(
-        qviAID: qb64,
-        issuee: qb64,
-        LEI: string
+        issuee: string,
+        data: LEvLEICredentialData,
+        edge: LEvLEICredentialEdge
     ) {
-        let data = new LEvLEICredentialData(LEI);
-        let edge = new LEvLEICredentialEdge(qviAID);
-
-        // replace with signify-ts credential create
-        // should always called with a group AID to create the EXN (signify-ts) and send to others
         return await this.client
             .credentials()
             .issue(
@@ -60,6 +54,60 @@ export class QVI {
                 issuee,
                 data,
                 Rules.LE,
+                edge,
+                false
+            );
+    }
+
+    /**
+     * Create Engagement Context Role Credential
+     *
+     * @param qviAID
+     * @param issuee
+     * @param credentialData
+     * @returns
+     */
+    public async createEngagementContextRoleCredential(
+        data: ECRvLEICredentialData,
+        edge: ECRvLEIAuthEdge,
+        issuee: string
+    ) {
+        return await this.client
+            .credentials()
+            .issue(
+                this.name,
+                this.registryAID,
+                Schema.ECR,
+                issuee,
+                data,
+                Rules.ECR,
+                edge,
+                false
+            );
+    }
+
+    /**
+     * Create Official Organizational Role Credential
+     *
+     * @param qviAID
+     * @param issuee
+     * @param credentialData
+     * @returns
+     */
+    public async createOfficialOrganizationRoleCredential(
+        data: OORvLEICredentialData,
+        edge: OOR,
+        issuee: string
+    ) {
+        return await this.client
+            .credentials()
+            .issue(
+                this.name,
+                this.registryAID,
+                Schema.OOR,
+                issuee,
+                data,
+                Rules.OOR,
                 edge,
                 false
             );
@@ -114,5 +162,15 @@ export class QVI {
             embeds,
             [recipient]
         );
+    }
+}
+
+export class QVIvLEIEdge {
+    n: string;
+    s: string;
+
+    constructor(qviAID: string) {
+        this.n = qviAID;
+        this.s = Schema.QVI;
     }
 }
