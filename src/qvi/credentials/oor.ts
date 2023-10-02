@@ -1,3 +1,7 @@
+import { Saider } from 'signify-ts';
+import { Schema } from '../../schema';
+import { AID } from '../..';
+
 export class OORvLEICredentialData {
     readonly LEI: string;
     readonly personLegalName: string;
@@ -14,17 +18,30 @@ export class OORvLEICredentialData {
     }
 }
 
-export interface OORAuthEdges {
-    d: string;
-    auth: OORvLEIAuthEdge;
+export interface OORAuthEdgeArgs {
+    auth: OORAuthvLEIEdgeData;
 }
 
-export class OORvLEIAuthEdge {
-    readonly n: string; // AID of the issuing Legal Entity
-    readonly s: string = 'EKA57bKBKxr_kN7iN5i7lMUxpMG-s19dRcmov1iDxz-E';
+export class OORAuthEdge {
+    readonly d: string;
+    readonly auth: OORAuthvLEIEdgeData;
+
+    constructor({ auth }: OORAuthEdgeArgs) {
+        this.d = Saider.saidify({ d: '', auth: auth })[1]['d'];
+        this.auth = auth;
+    }
+}
+
+export interface OORAuthvLEIEdgeDataArgs {
+    legalEntity: AID;
+}
+
+export class OORAuthvLEIEdgeData {
+    readonly n: string; // SAID of the the issuing LEs Legal Entity vLEI Credential
+    readonly s: string = Schema.LE;
     readonly o: string = 'I2I';
 
-    constructor(legalEntityAID: string) {
-        this.n = legalEntityAID;
+    constructor({ legalEntity }: OORAuthvLEIEdgeDataArgs) {
+        this.n = legalEntity;
     }
 }

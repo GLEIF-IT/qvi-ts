@@ -2,12 +2,10 @@ import { SignifyClient } from 'signify-ts';
 import { Schema } from '../schema';
 import { Rules } from '../rules';
 import { ECRAuthvLEICredentialData } from './credentials/ecr-auth';
-import { ECRAuthEdges } from '../qvi/credentials/ecr';
-import { AID, QVIvLEIEdge } from '..';
-import {
-    LEvLEICredentialData,
-    LEvLEICredentialEdge,
-} from '../qvi/credentials/le';
+import { ECRAuthEdge } from '../qvi/credentials/ecr';
+import { AID } from '..';
+import { OORAuthvLEICredentialData } from './credentials/oor-auth';
+import { OORAuthEdge } from '../qvi/credentials/oor';
 
 type qb64 = string;
 
@@ -39,13 +37,13 @@ export class LE {
      *
      * @param {AID} issuee AID of QVI
      * @param {ECRAuthvLEICredentialData} data
-     * @param {QVIvLEIEdge} edge}
+     * @param {ECRAuthEdge} edge}
      * @returns
      */
     public async createECRAuthCredential(
         issuee: AID,
         data: ECRAuthvLEICredentialData,
-        edge: ECRAuthEdges
+        edge: ECRAuthEdge
     ) {
         return await this.client
             .credentials()
@@ -65,24 +63,24 @@ export class LE {
      * Create OOR Auth Credential
      *
      * @param {AID} issuee AID of QVI
-     * @param {LEvLEICredentialData} data
-     * @param {LEvLEICredentialEdge} edge}
+     * @param {OORAuthvLEICredentialData} data
+     * @param {OORAuthEdge} edge}
      * @returns
      */
     public async createOORAuthCredential(
         issuee: AID,
-        data: LEvLEICredentialData,
-        edge: LEvLEICredentialEdge
+        data: OORAuthvLEICredentialData,
+        edge: OORAuthEdge
     ) {
         return await this.client
             .credentials()
             .issue(
                 this.name,
                 this.registryAID,
-                Schema.LE,
+                Schema.OORAuth,
                 issuee,
                 data,
-                Rules.LE,
+                Rules.OORAuth,
                 edge,
                 false
             );

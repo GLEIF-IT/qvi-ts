@@ -1,4 +1,6 @@
 import { Saider } from 'signify-ts';
+import { Schema } from '../../schema';
+import { AID } from '../..';
 
 export class ECRvLEICredentialData {
     readonly LEI: string;
@@ -16,22 +18,30 @@ export class ECRvLEICredentialData {
     }
 }
 
-export class ECRAuthEdges {
-    readonly d: string;
-    readonly auth: ECRvLEIAuthEdge;
+export interface ECRAuthEdgeArgs {
+    auth: ECRAuthvLEIEdgeData;
+}
 
-    constructor(auth: ECRvLEIAuthEdge) {
+export class ECRAuthEdge {
+    readonly d: string;
+    readonly auth: ECRAuthvLEIEdgeData;
+
+    constructor({ auth }: ECRAuthEdgeArgs) {
         this.d = Saider.saidify({ d: '', auth: auth })[1]['d'];
         this.auth = auth;
     }
 }
 
-export class ECRvLEIAuthEdge {
-    readonly n: string; // AID of the issuing Legal Entity
-    readonly s: string = 'EH6ekLjSr8V32WyFbGe1zXjTzFs9PkTYmupJ9H65O14g';
+export interface ECRAuthvLEIEdgeDataArgs {
+    legalEntity: AID;
+}
+
+export class ECRAuthvLEIEdgeData {
+    readonly n: string; // SAID of the the issuing LEs Legal Entity vLEI Credential
+    readonly s: string = Schema.LE;
     readonly o: string = 'I2I';
 
-    constructor(legalEntityAID: string) {
-        this.n = legalEntityAID;
+    constructor({ legalEntity }: ECRAuthvLEIEdgeDataArgs) {
+        this.n = legalEntity;
     }
 }

@@ -3,7 +3,7 @@ import { getAgentOperationResult, sendAgentMessage } from '../operations';
 import { Schema } from '../schema';
 import { Rules } from '../rules';
 import { LEvLEICredentialData, LEvLEICredentialEdge } from './credentials/le';
-import { ECRvLEIAuthEdge, ECRvLEICredentialData } from './credentials/ecr';
+import { ECRAuthvLEIEdgeData, ECRvLEICredentialData } from './credentials/ecr';
 import { OORvLEICredentialData } from './credentials/oor';
 import { OORAuthvLEICredentialData } from '../le/credentials/oor-auth';
 import { AID } from '..';
@@ -69,13 +69,13 @@ export class QVI {
      *
      * @param {AID} issuee
      * @param {ECRvLEICredentialData} data
-     * @param {ECRvLEIAuthEdge} edge
+     * @param {ECRAuthvLEIEdgeData} edge
      * @returns
      */
     public async createEngagementContextRoleCredential(
         issuee: AID,
         data: ECRvLEICredentialData,
-        edge: ECRvLEIAuthEdge
+        edge: ECRAuthvLEIEdgeData
     ) {
         return await this.client
             .credentials()
