@@ -1,15 +1,19 @@
 import { SignifyClient, Siger, messagize, d } from 'signify-ts';
 import { getAgentOperationResult, sendAgentMessage } from '../operations';
 import { Schema } from '../schema';
-import { LEvLEICredentialData, LEvLEICredentialEdge } from '../credentials';
 import { Rules } from '../rules';
+import { LEvLEICredentialData, LEvLEICredentialEdge } from './credentials/le';
+import { ECRAuthvLEIEdgeData, ECRvLEICredentialData } from './credentials/ecr';
+import { OORvLEICredentialData } from './credentials/oor';
+import { OORAuthvLEICredentialData } from '../le/credentials/oor-auth';
+import { AID } from '..';
 
 type qb64 = string;
 
 export class QVI {
     private readonly client: SignifyClient;
     private readonly name: string;
-    private readonly registryAID: qb64;
+    private readonly registry: qb64;
 
     /**
      * QVI
@@ -21,14 +25,14 @@ export class QVI {
      *  - Issue Engagement Context Role Credential
      *  - Issue Official Organizational Role Credential
      *
-     * @param client
-     * @param name
-     * @param registryAID
+     * @param {SignifyClient} client
+     * @param {string} name
+     * @param {qb64} registry
      */
-    constructor(client: SignifyClient, name: string, registryAID: qb64) {
+    constructor(client: SignifyClient, name: string, registry: qb64) {
         this.client = client;
         this.name = name;
-        this.registryAID = registryAID;
+        this.registry = registry;
     }
 
     /**
@@ -36,30 +40,79 @@ export class QVI {
      *
      * QVIs are required to be mutltisig groups by the vLEI Ecosystem Governance Framework
      *
-     * @param qviAID
-     * @param issuee
-     * @param credentialData
+     * @param {AID} issuee
+     * @param {LEvLEICredentialData} data
+     * @param {LEvLEICredentialEdge} edge}
      * @returns
      */
     public async createLegalEntityCredential(
-        qviAID: qb64,
-        issuee: qb64,
-        LEI: string
+        issuee: AID,
+        data: LEvLEICredentialData,
+        edge: LEvLEICredentialEdge
     ) {
-        let data = new LEvLEICredentialData(LEI);
-        let edge = new LEvLEICredentialEdge(qviAID);
-
-        // replace with signify-ts credential create
-        // should always called with a group AID to create the EXN (signify-ts) and send to others
         return await this.client
             .credentials()
             .issue(
                 this.name,
-                this.registryAID,
+                this.registry,
                 Schema.LE,
                 issuee,
                 data,
                 Rules.LE,
+                edge,
+                false
+            );
+    }
+
+    /**
+     * Create Engagement Context Role Credential
+     *
+     * @param {AID} issuee
+     * @param {ECRvLEICredentialData} data
+     * @param {ECRAuthvLEIEdgeData} edge
+     * @returns
+     */
+    public async createEngagementContextRoleCredential(
+        issuee: AID,
+        data: ECRvLEICredentialData,
+        edge: ECRAuthvLEIEdgeData
+    ) {
+        return await this.client
+            .credentials()
+            .issue(
+                this.name,
+                this.registry,
+                Schema.ECR,
+                issuee,
+                data,
+                Rules.ECR,
+                edge,
+                false
+            );
+    }
+
+    /**
+     * Create Official Organizational Role Credential
+     *
+     * @param {AID} issuee
+     * @param {OORvLEICredentialData}data``
+     * @param {OORAuthvLEICredentialData} edge
+     * @returns
+     */
+    public async createOfficialOrganizationRoleCredential(
+        issuee: AID,
+        data: OORvLEICredentialData,
+        edge: OORAuthvLEICredentialData
+    ) {
+        return await this.client
+            .credentials()
+            .issue(
+                this.name,
+                this.registry,
+                Schema.OOR,
+                issuee,
+                data,
+                Rules.OOR,
                 edge,
                 false
             );
@@ -114,5 +167,15 @@ export class QVI {
             embeds,
             [recipient]
         );
+    }
+}
+
+export class QVIvLEIEdge {
+    n: string;
+    s: string;
+
+    constructor(qviAID: string) {
+        this.n = qviAID;
+        this.s = Schema.QVI;
     }
 }

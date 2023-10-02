@@ -2,8 +2,11 @@ import { SignifyClient, Credentials } from 'signify-ts';
 import { describe, expect, it } from '@jest/globals';
 import { anyOfClass, capture, instance, mock, verify, when } from 'ts-mockito';
 import { QVI } from '../src';
-import { LEvLEICredentialData, LEvLEICredentialEdge } from '../src/credentials';
 import { Rules } from '../src/rules';
+import {
+    LEvLEICredentialData,
+    LEvLEICredentialEdge,
+} from '../src/qvi/credentials/le';
 
 describe('a qvi', () => {
     it('should create legal entity credential', () => {
@@ -14,8 +17,10 @@ describe('a qvi', () => {
 
         let client = instance(mockedClient);
         let qvi = new QVI(client, 'qvi_name', 'qvi_registry_aid');
+        let data = new LEvLEICredentialData({LEI: 'an LEI', issuee: 'issuee', timestamp: 'timestamp'});
+        let edge = new LEvLEICredentialEdge('qvi_aid');
 
-        qvi.createLegalEntityCredential('qvi aid', 'issuee aid', 'an LEI');
+        qvi.createLegalEntityCredential('issuee aid', data, edge);
 
         let cap = capture(c.issue).last();
 
@@ -37,9 +42,9 @@ describe('a qvi', () => {
 
         let EDGE_ARG = 6;
         expect(cap[EDGE_ARG].d).toBe(
-            'ENGyJEXhLMmS9UWNVmvDFfj95cvC1RCbomQHy-7bQrn8'
+            'EPfoOyfjSMVJhdiuq1wlcHR1XB7KMrgzziWZqL0iYWyZ'
         );
-        expect(cap[EDGE_ARG].qvi.n).toBe('qvi aid');
+        expect(cap[EDGE_ARG].qvi.n).toBe('qvi_aid');
         expect(cap[EDGE_ARG].qvi.s).toBe(
             'EBfdlu8R27Fbx-ehrqwImnK-8Cm79sqbAQ4MmvEAYqao'
         );
