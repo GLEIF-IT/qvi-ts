@@ -61,7 +61,7 @@ export class OORAuthEdge {
 }
 
 export interface OORAuthvLEIEdgeDataArgs {
-    legalEntity: AID;
+    leCredentialSAID: AID;
 }
 
 export class OORAuthvLEIEdgeData {
@@ -69,7 +69,7 @@ export class OORAuthvLEIEdgeData {
     readonly s: string = Schema.LE;
     readonly o: string = 'I2I';
 
-    constructor({ legalEntity }: OORAuthvLEIEdgeDataArgs) {
-        this.n = legalEntity;
+    constructor({ leCredentialSAID }: OORAuthvLEIEdgeDataArgs) {
+        this.n = leCredentialSAID;
     }
 }

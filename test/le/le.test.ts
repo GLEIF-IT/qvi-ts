@@ -79,7 +79,9 @@ describe('a legal entity', () => {
             personLegalName: 'my legal name',
             officialOrganizationalRole: 'official role',
         });
-        let auth = new OORAuthvLEIEdgeData({ legalEntity: 'legal_entity_aid' });
+        let auth = new OORAuthvLEIEdgeData({
+            leCredentialSAID: 'legal_entity_aid',
+        });
         let edge = new OORAuthEdge({ auth: auth });
 
         le.createOORAuthCredential('issuee aid', data, edge);

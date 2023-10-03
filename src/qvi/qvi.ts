@@ -3,8 +3,7 @@ import { Schema } from '../schema';
 import { Rules } from '../rules';
 import { LEvLEICredentialData, LEQVIEdge } from './credentials/le';
 import { ECRAuthEdge, ECRvLEICredentialData } from './credentials/ecr';
-import { OORvLEICredentialData } from './credentials/oor';
-import { OORAuthvLEICredentialData } from '../le/credentials/oor-auth';
+import { OORAuthEdge, OORvLEICredentialData } from './credentials/oor';
 import { AID } from '..';
 
 type qb64 = string;
@@ -101,7 +100,7 @@ export class QVI {
     public async createOfficialOrganizationRoleCredential(
         issuee: AID,
         data: OORvLEICredentialData,
-        edge: OORAuthvLEICredentialData
+        edge: OORAuthEdge
     ) {
         return await this.client
             .credentials()
