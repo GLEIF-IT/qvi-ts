@@ -1,5 +1,4 @@
 import { SignifyClient, Siger, messagize, d } from 'signify-ts';
-import { getAgentOperationResult, sendAgentMessage } from '../operations';
 import { Schema } from '../schema';
 import { Rules } from '../rules';
 import { LEvLEICredentialData, LEvLEICredentialEdge } from './credentials/le';
@@ -7,6 +6,7 @@ import { ECRAuthvLEIEdgeData, ECRvLEICredentialData } from './credentials/ecr';
 import { OORvLEICredentialData } from './credentials/oor';
 import { OORAuthvLEICredentialData } from '../le/credentials/oor-auth';
 import { AID } from '..';
+import { operations } from '../operations';
 
 type qb64 = string;
 
@@ -42,7 +42,7 @@ export class QVI {
      *
      * @param {AID} issuee
      * @param {LEvLEICredentialData} data
-     * @param {LEvLEICredentialEdge} edge}
+     * @param {LEvLEICredentialEdge} edge
      * @returns
      */
     public async createLegalEntityCredential(
@@ -95,7 +95,7 @@ export class QVI {
      * Create Official Organizational Role Credential
      *
      * @param {AID} issuee
-     * @param {OORvLEICredentialData}data``
+     * @param {OORvLEICredentialData} data
      * @param {OORAuthvLEICredentialData} edge
      * @returns
      */
@@ -125,7 +125,7 @@ export class QVI {
         credential?: any //result for createLegalEntityCredential
     ) {
         let sender = await this.client.identifiers().get('');
-        sender = await getAgentOperationResult(this.client, sender);
+        sender = await operations.getResult({client: this.client, op: sender});
 
         if (getFromAgent) {
             let msgSaid = '';
@@ -157,16 +157,18 @@ export class QVI {
         let embeds = {
             cred: [serder, atc],
         };
-        return await sendAgentMessage(
-            this.client,
-            alias,
-            'multisig_issuance',
-            sender,
-            '/multisig/iss',
-            {}, //TODO:payload
-            embeds,
-            [recipient]
-        );
+
+        return await this.client
+            .exchanges()
+            .send(
+                alias,
+                'multisig_issuance',
+                sender,
+                '/multisig/iss',
+                {},
+                embeds,
+                [recipient]
+            );
     }
 }
 

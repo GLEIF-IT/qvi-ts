@@ -17,7 +17,11 @@ describe('a qvi', () => {
 
         let client = instance(mockedClient);
         let qvi = new QVI(client, 'qvi_name', 'qvi_registry_aid');
-        let data = new LEvLEICredentialData({LEI: 'an LEI', issuee: 'issuee', timestamp: 'timestamp'});
+        let data = new LEvLEICredentialData({
+            LEI: 'an LEI',
+            issuee: 'issuee',
+            timestamp: 'timestamp',
+        });
         let edge = new LEvLEICredentialEdge('qvi_aid');
 
         qvi.createLegalEntityCredential('issuee aid', data, edge);
