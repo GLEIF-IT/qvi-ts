@@ -3,10 +3,7 @@ import { describe, expect, it } from '@jest/globals';
 import { anyOfClass, capture, instance, mock, verify, when } from 'ts-mockito';
 import { LE } from '../../src/le/le';
 import { ECRAuthvLEICredentialData } from '../../src/le/credentials/ecr-auth';
-import {
-    ECRAuthEdge,
-    ECRAuthvLEIEdgeData,
-} from '../../src/qvi/credentials/ecr';
+import { ECRAuthEdge, ECRAuthEdgeData } from '../../src/qvi/credentials/ecr';
 import { Rules } from '../../src/rules';
 import { OORAuthvLEICredentialData } from '../../src/le/credentials/oor-auth';
 import {
@@ -32,7 +29,7 @@ describe('a legal entity', () => {
             personLegalName: 'my legal name',
             engagementContextRole: 'context role',
         });
-        let auth = new ECRAuthvLEIEdgeData({ legalEntity: 'legal_entity_aid' });
+        let auth = new ECRAuthEdgeData({ leCredentialSAID: 'a said' });
         let edge = new ECRAuthEdge({ auth: auth });
 
         le.createECRAuthCredential('issuee aid', data, edge);
@@ -57,9 +54,9 @@ describe('a legal entity', () => {
 
         let EDGE_ARG = 6;
         expect(cap[EDGE_ARG].d).toBe(
-            'ED1dQiXEfyqMu2sh1zz7RMv5GP4g5b8YGMLrNdIht-TP'
+            'ENbbrJVx-rr8V7HzNmnrwt6OUaYD0sB-S-gxclr0TSM8'
         );
-        expect(cap[EDGE_ARG].auth.n).toBe('legal_entity_aid');
+        expect(cap[EDGE_ARG].auth.n).toBe('a said');
         expect(cap[EDGE_ARG].auth.s).toBe(
             'ENPXp1vQzRF6JwIuS-mp2U8Uf1MoADoP_GqQ62VsDZWY'
         );

@@ -47,12 +47,12 @@ export class ECRvLEICredentialData {
 }
 
 export interface ECRAuthEdgeArgs {
-    auth: ECRAuthvLEIEdgeData;
+    auth: ECRAuthEdgeData;
 }
 
 export class ECRAuthEdge {
     readonly d: string;
-    readonly auth: ECRAuthvLEIEdgeData;
+    readonly auth: ECRAuthEdgeData;
 
     constructor({ auth }: ECRAuthEdgeArgs) {
         this.d = Saider.saidify({ d: '', auth: auth })[1]['d'];
@@ -60,16 +60,16 @@ export class ECRAuthEdge {
     }
 }
 
-export interface ECRAuthvLEIEdgeDataArgs {
-    legalEntity: AID;
+export interface ECRAuthEdgeDataArgs {
+    leCredentialSAID: AID;
 }
 
-export class ECRAuthvLEIEdgeData {
+export class ECRAuthEdgeData {
     readonly n: string; // SAID of the the issuing LEs Legal Entity vLEI Credential
     readonly s: string = Schema.LE;
     readonly o: string = 'I2I';
 
-    constructor({ legalEntity }: ECRAuthvLEIEdgeDataArgs) {
-        this.n = legalEntity;
+    constructor({ leCredentialSAID }: ECRAuthEdgeDataArgs) {
+        this.n = leCredentialSAID;
     }
 }

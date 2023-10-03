@@ -1,12 +1,11 @@
-import { SignifyClient, Siger, messagize, d } from 'signify-ts';
+import { SignifyClient } from 'signify-ts';
 import { Schema } from '../schema';
 import { Rules } from '../rules';
-import { LEvLEICredentialData, LEvLEICredentialEdge } from './credentials/le';
-import { ECRAuthvLEIEdgeData, ECRvLEICredentialData } from './credentials/ecr';
+import { LEvLEICredentialData, LEQVIEdge } from './credentials/le';
+import { ECRAuthEdge, ECRvLEICredentialData } from './credentials/ecr';
 import { OORvLEICredentialData } from './credentials/oor';
 import { OORAuthvLEICredentialData } from '../le/credentials/oor-auth';
 import { AID } from '..';
-import { operations } from '../operations';
 
 type qb64 = string;
 
@@ -42,13 +41,13 @@ export class QVI {
      *
      * @param {AID} issuee
      * @param {LEvLEICredentialData} data
-     * @param {LEvLEICredentialEdge} edge
+     * @param {LEQVIEdge} edge
      * @returns
      */
     public async createLegalEntityCredential(
         issuee: AID,
         data: LEvLEICredentialData,
-        edge: LEvLEICredentialEdge
+        edge: LEQVIEdge
     ) {
         return await this.client
             .credentials()
@@ -69,13 +68,13 @@ export class QVI {
      *
      * @param {AID} issuee
      * @param {ECRvLEICredentialData} data
-     * @param {ECRAuthvLEIEdgeData} edge
+     * @param {ECRAuthEdge} edge
      * @returns
      */
     public async createEngagementContextRoleCredential(
         issuee: AID,
         data: ECRvLEICredentialData,
-        edge: ECRAuthvLEIEdgeData
+        edge: ECRAuthEdge
     ) {
         return await this.client
             .credentials()
@@ -116,68 +115,5 @@ export class QVI {
                 edge,
                 false
             );
-    }
-
-    public async sendLegalEntityCredential(
-        alias: string,
-        recipient: string,
-        getFromAgent: boolean,
-        credential?: any //result for createLegalEntityCredential
-    ) {
-        let sender = await this.client.identifiers().get('');
-        sender = await operations.getResult({client: this.client, op: sender});
-
-        if (getFromAgent) {
-            let msgSaid = '';
-            while (msgSaid == '') {
-                let notifications = await this.client.notifications().list();
-                for (let notif of notifications.notes) {
-                    if (notif.a.r == '/multisig/iss') {
-                        msgSaid = notif.a.d;
-                        await this.client.notifications().mark(notif.i);
-                        console.log(
-                            'alex@alex.com-member3 received exchange message to join multisig'
-                        );
-                    }
-                }
-                await new Promise((resolve) => setTimeout(resolve, 100));
-            }
-
-            // let res = await this.client.credentials().getRequest(msgSaid)
-            // let exn = res[0].exn
-            // credential = exn.e.cred
-        }
-
-        let serder = credential.serder;
-        let sigs = credential.sigs;
-        let sigers = sigs.map((sig: any) => new Siger({ qb64: sig }));
-
-        let ims = d(messagize(serder, sigers));
-        let atc = ims.substring(serder.size);
-        let embeds = {
-            cred: [serder, atc],
-        };
-
-        return await this.client
-            .exchanges()
-            .send(
-                alias,
-                'multisig_issuance',
-                sender,
-                '/multisig/iss',
-                {},
-                embeds,
-                [recipient]
-            );
-    }
-}
-
-export class QVIvLEIEdge {
-    n: string;
-    s: string;
-
-    constructor(qviAID: string) {
-        this.n = qviAID;
-        this.s = Schema.QVI;
     }
 }
