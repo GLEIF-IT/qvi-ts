@@ -12,9 +12,9 @@ describe('operations', () => {
 
         let client = instance(mockedClient);
 
-        let op = { done: true, name: 'my_op', response: 'yay'};
+        let op = { done: true, name: 'my_op', response: 'yay' };
 
-        let resp = await operations.getResult({client: client, op: op});
+        let resp = await operations.getResult({ client: client, op: op });
         expect(resp).toEqual('yay');
     });
 
@@ -25,7 +25,11 @@ describe('operations', () => {
         when(mockedClient.credentials()).thenReturn(instance(c));
 
         let mockedOps: Operations = mock(Operations);
-        when(mockedOps.get('my_op')).thenResolve({done: true, name: 'my_op', response: 'yay'});
+        when(mockedOps.get('my_op')).thenResolve({
+            done: true,
+            name: 'my_op',
+            response: 'yay',
+        });
         when(mockedClient.operations()).thenReturn(instance(mockedOps));
 
         let client = instance(mockedClient);

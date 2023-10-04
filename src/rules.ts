@@ -1,6 +1,6 @@
-import { Schema } from './schema';
+import { schema } from './schema';
 
-namespace Rules {
+namespace rules {
     const usageDisclaimer =
         'Usage of a valid, unexpired, and non-revoked vLEI Credential, as defined in the associated Ecosystem Governance Framework, does not assert that the Legal Entity is trustworthy, honest, reputable in its business dealings, safe to do business with, or compliant with any laws or that an implied or expressly intended purpose will be fulfilled.';
     const issuanceDisclaimer =
@@ -26,7 +26,7 @@ namespace Rules {
     }
 
     export const LE = {
-        d: Schema.LE,
+        d: schema.LE,
         usageDisclaimer: {
             l: usageDisclaimer,
         },
@@ -36,7 +36,7 @@ namespace Rules {
     };
 
     export const ECR = {
-        d: Schema.ECR,
+        d: schema.ECR,
         usageDisclaimer: {
             l: usageDisclaimer,
         },
@@ -49,7 +49,7 @@ namespace Rules {
     };
 
     export const ECRAuth = {
-        d: Schema.ECRAuth,
+        d: schema.ECRAuth,
         usageDisclaimer: {
             l: usageDisclaimer,
         },
@@ -62,7 +62,7 @@ namespace Rules {
     };
 
     export const OOR = {
-        d: Schema.OOR,
+        d: schema.OOR,
         usageDisclaimer: {
             l: usageDisclaimer,
         },
@@ -72,7 +72,7 @@ namespace Rules {
     };
 
     export const OORAuth = {
-        d: Schema.OORAuth,
+        d: schema.OORAuth,
         usageDisclaimer: {
             l: usageDisclaimer,
         },
@@ -82,4 +82,4 @@ namespace Rules {
     };
 }
 
-export { Rules };
+export { rules };

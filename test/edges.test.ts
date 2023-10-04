@@ -1,9 +1,9 @@
 import { describe, expect, it } from '@jest/globals';
-import { LEvLEICredentialData } from '../../../src/qvi/credentials/le';
+import { credentials } from '../src/credentials';
 
 describe('ecr credentials', () => {
     it('should create ecr data', () => {
-        let data = new LEvLEICredentialData({
+        let data = new credentials.LegalEntityCredentialData({
             issuee: 'issuee',
             timestamp: 'timestamp',
             LEI: 'lei',

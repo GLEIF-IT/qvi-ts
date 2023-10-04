@@ -1,2 +1,2 @@
 export type AID = string;
-export * from './qvi/qvi';
+export * from './qvi';
