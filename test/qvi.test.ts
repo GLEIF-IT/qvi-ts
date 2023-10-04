@@ -2,7 +2,7 @@ import { SignifyClient, Credentials } from 'signify-ts';
 import { describe, expect, it } from '@jest/globals';
 import { anyOfClass, capture, instance, mock, verify, when } from 'ts-mockito';
 import { QVI } from '../src';
-import { Rules } from '../src/rules';
+import { rules } from '../src/rules';
 import { credentials } from '../src/credentials';
 import { edges } from '../src/edges';
 
@@ -36,7 +36,7 @@ describe('a qvi', () => {
                 'ENPXp1vQzRF6JwIuS-mp2U8Uf1MoADoP_GqQ62VsDZWY',
                 'issuee aid',
                 anyOfClass(credentials.LegalEntityCredentialData),
-                Rules.LE,
+                rules.LE,
                 anyOfClass(edges.LegalEntityCredentialEdge),
                 false
             )
@@ -90,7 +90,7 @@ describe('a qvi', () => {
                 'EEy9PkikFcANV1l7EHukCeXqrzT1hNZjGlUk7wuMO5jw',
                 'issuee aid',
                 anyOfClass(credentials.EngagementContextRoleCredentialData),
-                Rules.ECR,
+                rules.ECR,
                 anyOfClass(edges.EngagementContextRoleCredentialEdge),
                 false
             )
@@ -148,7 +148,7 @@ describe('a qvi', () => {
                 anyOfClass(
                     credentials.OfficialOrganizationalRoleCredentialData
                 ),
-                Rules.OOR,
+                rules.OOR,
                 anyOfClass(edges.OfficialOrganizationalRoleEdge),
                 false
             )

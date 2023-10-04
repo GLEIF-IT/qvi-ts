@@ -1,6 +1,6 @@
 import { SignifyClient } from 'signify-ts';
-import { Schema } from './schema';
-import { Rules } from './rules';
+import { schema } from './schema';
+import { rules } from './rules';
 import { AID } from '.';
 import { edges } from './edges';
 import { credentials } from './credentials';
@@ -50,10 +50,10 @@ export class QVI {
             .issue(
                 this.name,
                 this.registry,
-                Schema.LE,
+                schema.LE,
                 issuee,
                 data,
-                Rules.LE,
+                rules.LE,
                 edge,
                 false
             );
@@ -77,10 +77,10 @@ export class QVI {
             .issue(
                 this.name,
                 this.registry,
-                Schema.ECR,
+                schema.ECR,
                 issuee,
                 data,
-                Rules.ECR,
+                rules.ECR,
                 edge,
                 false
             );
@@ -104,10 +104,10 @@ export class QVI {
             .issue(
                 this.name,
                 this.registry,
-                Schema.OOR,
+                schema.OOR,
                 issuee,
                 data,
-                Rules.OOR,
+                rules.OOR,
                 edge,
                 false
             );

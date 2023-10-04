@@ -1,4 +1,4 @@
-namespace Schema {
+namespace schema {
     export const QVI = 'EBfdlu8R27Fbx-ehrqwImnK-8Cm79sqbAQ4MmvEAYqao';
     export const LE = 'ENPXp1vQzRF6JwIuS-mp2U8Uf1MoADoP_GqQ62VsDZWY';
     export const ECRAuth = 'EH6ekLjSr8V32WyFbGe1zXjTzFs9PkTYmupJ9H65O14g';
@@ -7,4 +7,4 @@ namespace Schema {
     export const OOR = 'EBNaNu-M9P5cgrnfl2Fvymy4E_jvxxyjb70PRtiANlJy';
 }
 
-export { Schema };
+export { schema };

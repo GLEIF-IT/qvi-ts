@@ -1,5 +1,5 @@
 import { Saider } from 'signify-ts';
-import { Schema } from './schema';
+import { schema } from './schema';
 
 namespace edges {
     /**
@@ -56,7 +56,7 @@ namespace edges {
 
         constructor({ qviCredentialSAID }: LegalEntityCredentialEdgeDataArgs) {
             this.n = qviCredentialSAID;
-            this.s = Schema.QVI;
+            this.s = schema.QVI;
         }
     }
 
@@ -116,7 +116,7 @@ namespace edges {
             engagementContextRoleAuthorizationCredentialSAID,
         }: EngagementContextRoleCredentialEdgeDataArgs) {
             this.n = engagementContextRoleAuthorizationCredentialSAID;
-            this.s = Schema.ECRAuth;
+            this.s = schema.ECRAuth;
         }
     }
 
@@ -176,7 +176,7 @@ namespace edges {
             legalEntityCredentialSAID,
         }: EngagementContextRoleAuthorizationCredentialEdgeDataArgs) {
             this.n = legalEntityCredentialSAID;
-            this.s = Schema.LE;
+            this.s = schema.LE;
         }
     }
 
@@ -236,7 +236,7 @@ namespace edges {
             officialOrganizationalRoleAuthorizationCredentialSAID,
         }: OfficialOrganizationalRoleCredentialEdgeDataArgs) {
             this.n = officialOrganizationalRoleAuthorizationCredentialSAID;
-            this.s = Schema.OORAuth;
+            this.s = schema.OORAuth;
         }
     }
 
@@ -296,7 +296,7 @@ namespace edges {
             legalEntityCredentialSAID,
         }: OfficialOrganizationalRoleAuthorizationCredentialEdgeDataArgs) {
             this.n = legalEntityCredentialSAID;
-            this.s = Schema.LE;
+            this.s = schema.LE;
         }
     }
 }
