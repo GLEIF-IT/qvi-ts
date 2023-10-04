@@ -1,10 +1,9 @@
 import { SignifyClient } from 'signify-ts';
-import { Schema } from '../schema';
-import { Rules } from '../rules';
-import { AID } from '..';
-import { OORAuthEdge } from '../qvi/credentials/oor';
-import { credentials } from '../credentials';
-import { edges } from '../edges';
+import { Schema } from './schema';
+import { Rules } from './rules';
+import { AID } from '.';
+import { credentials } from './credentials';
+import { edges } from './edges';
 
 type qb64 = string;
 
