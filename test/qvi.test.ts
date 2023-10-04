@@ -131,7 +131,7 @@ describe('a qvi', () => {
                     legalEntityCredentialSAID: 'a SAID',
                 }
             );
-        let edge = new edges.OfficialOrganizationalRoleEdge({
+        let edge = new edges.OfficialOrganizationalRoleCredentialEdge({
             auth: edgeData,
         });
 
@@ -149,7 +149,7 @@ describe('a qvi', () => {
                     credentials.OfficialOrganizationalRoleCredentialData
                 ),
                 rules.OOR,
-                anyOfClass(edges.OfficialOrganizationalRoleEdge),
+                anyOfClass(edges.OfficialOrganizationalRoleCredentialEdge),
                 false
             )
         ).once();
