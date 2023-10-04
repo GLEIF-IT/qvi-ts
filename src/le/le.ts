@@ -1,10 +1,10 @@
 import { SignifyClient } from 'signify-ts';
 import { Schema } from '../schema';
 import { Rules } from '../rules';
-import { ECRAuthvLEICredentialData } from './credentials/ecr-auth';
 import { AID } from '..';
-import { OORAuthvLEICredentialData } from './credentials/oor-auth';
 import { OORAuthEdge } from '../qvi/credentials/oor';
+import { credentials } from '../credentials';
+import { edges } from '../edges';
 
 type qb64 = string;
 
@@ -35,14 +35,14 @@ export class LE {
      * Create ECR Auth Credential
      *
      * @param {AID} issuee AID of QVI
-     * @param {ECRAuthvLEICredentialData} data
-     * @param {ECRAuthEdge} edge}
+     * @param {credentials.EngagementContextRoleAuthorizationCredentialData} data
+     * @param {edges.EngagementContextRoleAuthorizationCredentialEdgeData} edge}
      * @returns
      */
     public async createECRAuthCredential(
         issuee: AID,
-        data: ECRAuthvLEICredentialData,
-        edge: LEEdge
+        data: credentials.EngagementContextRoleAuthorizationCredentialData,
+        edge: edges.EngagementContextRoleAuthorizationCredentialEdgeData
     ) {
         return await this.client
             .credentials()
@@ -62,14 +62,14 @@ export class LE {
      * Create OOR Auth Credential
      *
      * @param {AID} issuee AID of QVI
-     * @param {OORAuthvLEICredentialData} data
-     * @param {OORAuthEdge} edge}
+     * @param {credentials.OfficialOrganizationalRoleAuthorizationCredentialData} data
+     * @param {edges.OfficialOrganizationalRoleAuthorizationCredentialEdgeData} edge}
      * @returns
      */
     public async createOORAuthCredential(
         issuee: AID,
-        data: OORAuthvLEICredentialData,
-        edge: OORAuthEdge
+        data: credentials.OfficialOrganizationalRoleAuthorizationCredentialData,
+        edge: edges.OfficialOrganizationalRoleAuthorizationCredentialEdgeData
     ) {
         return await this.client
             .credentials()
@@ -83,26 +83,5 @@ export class LE {
                 edge,
                 false
             );
-    }
-}
-
-export interface LEEdgeDataArgs {}
-
-export class LEEdgeData {
-    n: string;
-    s: string = '';
-
-    constructor() {}
-}
-
-export interface LEEdgeArgs {
-    edge: LEEdgeData;
-}
-
-export class LEEdge {
-    le: LEEdgeData;
-
-    constructor({ edge }: LEEdgeArgs) {
-        this.le = edge;
     }
 }
