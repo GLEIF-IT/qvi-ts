@@ -3,16 +3,6 @@ import { describe, expect, it } from '@jest/globals';
 import { anyOfClass, capture, instance, mock, verify, when } from 'ts-mockito';
 import { QVI } from '../src';
 import { Rules } from '../src/rules';
-import {
-    ECRAuthEdge,
-    ECRAuthEdgeData as ECRAuthEdgeData,
-    ECRvLEICredentialData,
-} from '../src/qvi/credentials/ecr';
-import {
-    OORAuthEdge,
-    OORAuthvLEIEdgeData as OORAuthEdgeData,
-    OORvLEICredentialData,
-} from '../src/qvi/credentials/oor';
 import { credentials } from '../src/credentials';
 import { edges } from '../src/edges';
 
@@ -73,7 +63,7 @@ describe('a qvi', () => {
 
         let client = instance(mockedClient);
         let qvi = new QVI(client, 'qvi_name', 'qvi_registry_aid');
-        let data = new ECRvLEICredentialData({
+        let data = new credentials.EngagementContextRoleCredentialData({
             issuee: 'issuee',
             nonce: 'nonce',
             timestamp: 'timestamp',
@@ -81,10 +71,13 @@ describe('a qvi', () => {
             personLegalName: 'person legal name',
             engagementContextRole: 'my ocntext role',
         });
-        let authData = new ECRAuthEdgeData({
-            leCredentialSAID: 'a SAID',
+        let edgeData =
+            new edges.EngagementContextRoleAuthorizationCredentialEdgeData({
+                legalEntityCredentialSAID: 'a SAID',
+            });
+        let edge = new edges.EngagementContextRoleCredentialEdge({
+            auth: edgeData,
         });
-        let edge = new ECRAuthEdge({ auth: authData });
 
         qvi.createEngagementContextRoleCredential('issuee aid', data, edge);
 
@@ -96,9 +89,9 @@ describe('a qvi', () => {
                 'qvi_registry_aid',
                 'EEy9PkikFcANV1l7EHukCeXqrzT1hNZjGlUk7wuMO5jw',
                 'issuee aid',
-                anyOfClass(ECRvLEICredentialData),
+                anyOfClass(credentials.EngagementContextRoleCredentialData),
                 Rules.ECR,
-                anyOfClass(ECRAuthEdge),
+                anyOfClass(edges.EngagementContextRoleCredentialEdge),
                 false
             )
         ).once();
@@ -108,7 +101,7 @@ describe('a qvi', () => {
 
         let EDGE_ARG = 6;
         expect(cap[EDGE_ARG].d).toBe(
-            'EO_ctStrce0aXRVzoD6Ej_vn6YCsovl5A-WMLaQGlvzs'
+            'EM81ajLzAGXxHli47SKrxBuH1nHEv4p09gUsWdZirhsQ'
         );
         expect(cap[EDGE_ARG].auth.n).toBe('a SAID');
         expect(cap[EDGE_ARG].auth.s).toBe(
@@ -124,7 +117,7 @@ describe('a qvi', () => {
 
         let client = instance(mockedClient);
         let qvi = new QVI(client, 'qvi_name', 'qvi_registry_aid');
-        let data = new OORvLEICredentialData({
+        let data = new credentials.OfficialOrganizationalRoleCredentialData({
             issuee: 'issuee',
             nonce: 'nonce',
             timestamp: 'timestamp',
@@ -132,10 +125,15 @@ describe('a qvi', () => {
             personLegalName: 'person legal name',
             officialOrganizationalRole: 'my official role',
         });
-        let authData = new OORAuthEdgeData({
-            leCredentialSAID: 'a SAID',
+        let edgeData =
+            new edges.OfficialOrganizationalRoleAuthorizationCredentialEdgeData(
+                {
+                    legalEntityCredentialSAID: 'a SAID',
+                }
+            );
+        let edge = new edges.OfficialOrganizationalRoleEdge({
+            auth: edgeData,
         });
-        let edge = new OORAuthEdge({ auth: authData });
 
         qvi.createOfficialOrganizationRoleCredential('issuee aid', data, edge);
 
@@ -147,9 +145,11 @@ describe('a qvi', () => {
                 'qvi_registry_aid',
                 'EBNaNu-M9P5cgrnfl2Fvymy4E_jvxxyjb70PRtiANlJy',
                 'issuee aid',
-                anyOfClass(OORvLEICredentialData),
+                anyOfClass(
+                    credentials.OfficialOrganizationalRoleCredentialData
+                ),
                 Rules.OOR,
-                anyOfClass(OORAuthEdge),
+                anyOfClass(edges.OfficialOrganizationalRoleEdge),
                 false
             )
         ).once();
@@ -159,7 +159,7 @@ describe('a qvi', () => {
 
         let EDGE_ARG = 6;
         expect(cap[EDGE_ARG].d).toBe(
-            'EO_ctStrce0aXRVzoD6Ej_vn6YCsovl5A-WMLaQGlvzs'
+            'EM81ajLzAGXxHli47SKrxBuH1nHEv4p09gUsWdZirhsQ'
         );
         expect(cap[EDGE_ARG].auth.n).toBe('a SAID');
         expect(cap[EDGE_ARG].auth.s).toBe(

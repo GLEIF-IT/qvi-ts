@@ -45,6 +45,73 @@ namespace credentials {
     }
 
     /**
+     * EngagementContextRoleCredentialDataArgs
+     *
+     * Parameters for {@link EngagementContextRoleCredentialData}
+     *
+     * @property {nonce string} A salty nonce
+     * @property {issuee AID} Person Issuee AID
+     * @property {timestamp string} Issuance date time
+     * @property {LEI string} LEI of the Legal Entity
+     * @property {personLegalName string} Recipient name as provided during identity assurance
+     * @property {engagementContextRole string} Role description i.e. 'Head of Standards'
+     */
+    export interface EngagementContextRoleCredentialDataArgs {
+        nonce: string;
+        issuee: AID;
+        timestamp: string;
+        LEI: string;
+        personLegalName: string;
+        engagementContextRole: string;
+    }
+
+    /**
+     * EngagementContextRoleCredentialData
+     *
+     * @property {d string} QVI Issuee AID
+     * @property {u string} Issuance date time
+     * @property {i AID} Person Issuee AID
+     * @property {dt string} Issuance date time
+     * @property {LEI string} LEI of the Legal Entity
+     * @property {personLegalName string} Recipient name as provided during identity assurance
+     * @property {engagementContextRole string} Role description i.e. 'Head of Standards'
+     */
+    export class EngagementContextRoleCredentialData {
+        readonly d: string;
+        readonly u: string;
+        readonly i: string;
+        readonly dt: string;
+        readonly LEI: string;
+        readonly personLegalName: string;
+        readonly engagementContextRole: string;
+
+        constructor({
+            nonce,
+            issuee,
+            timestamp,
+            LEI,
+            personLegalName,
+            engagementContextRole,
+        }: EngagementContextRoleCredentialDataArgs) {
+            this.u = nonce;
+            this.i = issuee;
+            this.dt = timestamp;
+            this.LEI = LEI;
+            this.personLegalName = personLegalName;
+            this.engagementContextRole = engagementContextRole;
+            this.d = Saider.saidify({
+                d: '',
+                u: this.u,
+                i: this.i,
+                dt: this.dt,
+                LEI: this.LEI,
+                personLegalName: this.personLegalName,
+                engagementContextRole: this.engagementContextRole,
+            })[1]['d'];
+        }
+    }
+
+    /**
      * EngagementContextRoleAuthorizationCredentialDataArgs
      *
      * Parameters for {@link EngagementContextRoleAuthorizationCredentialData}
@@ -109,6 +176,73 @@ namespace credentials {
             this.LEI = LEI;
             this.personLegalName = personLegalName;
             this.engagementContextRole = engagementContextRole;
+        }
+    }
+
+    /**
+     * OfficialOrganizationalRoleCredentialDataArgs
+     *
+     * Parameters for {@link OfficialOrganizationalRoleCredentialData}
+     *
+     * @property {nonce string} A salty nonce
+     * @property {issuee AID} Person Issuee AID
+     * @property {timestamp string} Issuance date time
+     * @property {LEI string} LEI of the Legal Entity
+     * @property {personLegalName string} Recipient name as provided during identity assurance
+     * @property {officialOrganizationalRole string} Official role title {@see https://www.gleif.org/en/about-lei/code-lists/iso-5009-official-organizational-roles-code-list}
+     */
+    export interface OfficialOrganizationalRoleCredentialDataArgs {
+        nonce: string;
+        issuee: AID;
+        timestamp: string;
+        LEI: string;
+        personLegalName: string;
+        officialOrganizationalRole: string;
+    }
+
+    /**
+     * OfficialOrganizationalRoleCredentialData
+     *
+     * @property {d string} QVI Issuee AID
+     * @property {u string} Issuance date time
+     * @property {i AID} Person Issuee AID
+     * @property {dt string} Issuance date time
+     * @property {LEI string} LEI of the Legal Entity
+     * @property {personLegalName string} Recipient name as provided during identity assurance
+     * @property {officialOrganizationalRole string} Official role title {@see https://www.gleif.org/en/about-lei/code-lists/iso-5009-official-organizational-roles-code-list}
+     */
+    export class OfficialOrganizationalRoleCredentialData {
+        readonly d: string;
+        readonly u: string;
+        readonly i: string;
+        readonly dt: string;
+        readonly LEI: string;
+        readonly personLegalName: string;
+        readonly officialOrganizationalRole: string;
+
+        constructor({
+            nonce,
+            issuee,
+            timestamp,
+            LEI,
+            personLegalName,
+            officialOrganizationalRole,
+        }: OfficialOrganizationalRoleCredentialDataArgs) {
+            this.u = nonce;
+            this.i = issuee;
+            this.dt = timestamp;
+            this.LEI = LEI;
+            this.personLegalName = personLegalName;
+            this.officialOrganizationalRole = officialOrganizationalRole;
+            this.d = Saider.saidify({
+                d: '',
+                u: this.u,
+                i: this.i,
+                dt: this.dt,
+                LEI: this.LEI,
+                personLegalName: this.personLegalName,
+                officialOrganizationalRole: this.officialOrganizationalRole,
+            })[1]['d'];
         }
     }
 
