@@ -181,29 +181,29 @@ namespace edges {
     }
 
     /**
-     * OfficialOrganizationalRoleEdgeArgs
+     * OfficialOrganizationalRoleCredentialEdgeArgs
      *
-     * Parameters for {@link OfficialOrganizationalRoleEdge}
+     * Parameters for {@link OfficialOrganizationalRoleCredentialEdge}
      *
      * @property {auth OfficialOrganizationalRoleCredentialEdgeData} data for the edge
      */
-    export interface OfficialOrganizationalRoleEdgeArgs {
+    export interface OfficialOrganizationalRoleCredentialEdgeArgs {
         auth: OfficialOrganizationalRoleCredentialEdgeData;
     }
 
     /**
-     * OfficialOrganizationalRoleEdge
+     * OfficialOrganizationalRoleCredentialEdge
      *
      * Used as edge property for {@link createOfficialOrganizationalRoleCredential}
      *
-     * @property {d string} digest of {@link OfficialOrganizationalRoleEdge} block
-     * @property {auth OfficialOrganizationalRoleEdgeData} nested block of {@link OfficialOrganizationalRoleEdgeData}
+     * @property {d string} digest of {@link OfficialOrganizationalRoleCredentialEdge} block
+     * @property {auth OfficialOrganizationalRoleCredentialEdgeData} nested block of {@link OfficialOrganizationalRoleCredentialEdgeData}
      */
-    export class OfficialOrganizationalRoleEdge {
+    export class OfficialOrganizationalRoleCredentialEdge {
         readonly d: string;
         readonly auth: OfficialOrganizationalRoleCredentialEdgeData;
 
-        constructor({ auth }: OfficialOrganizationalRoleEdgeArgs) {
+        constructor({ auth }: OfficialOrganizationalRoleCredentialEdgeArgs) {
             this.d = Saider.saidify({ d: '', auth: auth })[1]['d'];
             this.auth = auth;
         }
@@ -223,7 +223,7 @@ namespace edges {
     /**
      * OfficialOrganizationalRoleCredentialEdgeData
      *
-     * Nested property for {@link OfficialOrganizationalRoleEdge}
+     * Nested property for {@link OfficialOrganizationalRoleCredentialEdge}
      *
      * @property {n string} SAID of previously issued Legal Entity credential
      * @property {s string} SAID of Engagement Context Authorization credential schema

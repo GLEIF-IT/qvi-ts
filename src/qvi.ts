@@ -97,7 +97,7 @@ export class QVI {
     public async createOfficialOrganizationRoleCredential(
         issuee: AID,
         data: credentials.OfficialOrganizationalRoleCredentialData,
-        edge: edges.OfficialOrganizationalRoleEdge
+        edge: edges.OfficialOrganizationalRoleCredentialEdge
     ) {
         return await this.client
             .credentials()
