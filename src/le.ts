@@ -1,6 +1,6 @@
 import { SignifyClient } from 'signify-ts';
-import { Schema } from './schema';
-import { Rules } from './rules';
+import { schema } from './schema';
+import { rules } from './rules';
 import { AID } from '.';
 import { credentials } from './credentials';
 import { edges } from './edges';
@@ -48,10 +48,10 @@ export class LE {
             .issue(
                 this.name,
                 this.registryAID,
-                Schema.ECRAuth,
+                schema.ECRAuth,
                 issuee,
                 data,
-                Rules.ECRAuth,
+                rules.ECRAuth,
                 edge,
                 false
             );
@@ -75,10 +75,10 @@ export class LE {
             .issue(
                 this.name,
                 this.registryAID,
-                Schema.OORAuth,
+                schema.OORAuth,
                 issuee,
                 data,
-                Rules.OORAuth,
+                rules.OORAuth,
                 edge,
                 false
             );
