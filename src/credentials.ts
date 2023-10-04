@@ -189,7 +189,7 @@ namespace credentials {
      * @property {timestamp string} Issuance date time
      * @property {LEI string} LEI of the Legal Entity
      * @property {personLegalName string} Recipient name as provided during identity assurance
-     * @property {officialOrganizationalRole string} Official role title {@see https://www.gleif.org/en/about-lei/code-lists/iso-5009-official-organizational-roles-code-list}
+     * @property {officialOrganizationalRole string} Official role title {@link https://www.gleif.org/en/about-lei/code-lists/iso-5009-official-organizational-roles-code-list}
      */
     export interface OfficialOrganizationalRoleCredentialDataArgs {
         nonce: string;
@@ -209,7 +209,7 @@ namespace credentials {
      * @property {dt string} Issuance date time
      * @property {LEI string} LEI of the Legal Entity
      * @property {personLegalName string} Recipient name as provided during identity assurance
-     * @property {officialOrganizationalRole string} Official role title {@see https://www.gleif.org/en/about-lei/code-lists/iso-5009-official-organizational-roles-code-list}
+     * @property {officialOrganizationalRole string} Official role title {@link https://www.gleif.org/en/about-lei/code-lists/iso-5009-official-organizational-roles-code-list}
      */
     export class OfficialOrganizationalRoleCredentialData {
         readonly d: string;
@@ -256,7 +256,7 @@ namespace credentials {
      * @property {issuee AID} AID of the intended recipient of the ECR credential
      * @property {LEI string} LEI of the requesting Legal Entity
      * @property {personLegalName string} Requested recipient name as provided during identity assurance
-     * @property {officialOrganizationalRole string} Requested ISO 5009 official role description i.e. 'Chairman' {@see https://www.gleif.org/en/about-lei/code-lists/iso-5009-official-organizational-roles-code-list}
+     * @property {officialOrganizationalRole string} Requested ISO 5009 official role description i.e. 'Chairman' {@link https://www.gleif.org/en/about-lei/code-lists/iso-5009-official-organizational-roles-code-list}
      */
     export interface OfficialOrganizationalRoleAuthorizationCredentialDataArgs {
         readonly qviAID: AID;
@@ -276,7 +276,7 @@ namespace credentials {
      * @property {AID string} AID of the intended recipient of the ECR credential
      * @property {LEI string} LEI of the requesting Legal Entity
      * @property {personLegalName string} Requested recipient name as provided during identity assurance
-     * @property {officialOrganizationalRole string} Requested ISO 5009 official role description i.e. 'Chairman' {@see https://www.gleif.org/en/about-lei/code-lists/iso-5009-official-organizational-roles-code-list}
+     * @property {officialOrganizationalRole string} Requested ISO 5009 official role description i.e. 'Chairman' {@link https://www.gleif.org/en/about-lei/code-lists/iso-5009-official-organizational-roles-code-list}
      */
     export class OfficialOrganizationalRoleAuthorizationCredentialData {
         readonly d: string;
