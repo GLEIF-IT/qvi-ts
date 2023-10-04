@@ -1,10 +1,11 @@
 import { SignifyClient } from 'signify-ts';
 import { Schema } from '../schema';
 import { Rules } from '../rules';
-import { LEvLEICredentialData, LEQVIEdge } from './credentials/le';
 import { ECRAuthEdge, ECRvLEICredentialData } from './credentials/ecr';
 import { OORAuthEdge, OORvLEICredentialData } from './credentials/oor';
 import { AID } from '..';
+import { edges } from '../edges';
+import { credentials } from '../credentials';
 
 type qb64 = string;
 
@@ -36,17 +37,15 @@ export class QVI {
     /**
      * Create Legal Entity Credential
      *
-     * QVIs are required to be mutltisig groups by the vLEI Ecosystem Governance Framework
-     *
      * @param {AID} issuee
-     * @param {LEvLEICredentialData} data
-     * @param {LEQVIEdge} edge
+     * @param {credentials.LegalEntityCredentialData} data
+     * @param {edges.LegalEntityCredentialEdge} edge
      * @returns
      */
     public async createLegalEntityCredential(
         issuee: AID,
-        data: LEvLEICredentialData,
-        edge: LEQVIEdge
+        data: credentials.LegalEntityCredentialData,
+        edge: edges.LegalEntityCredentialEdge
     ) {
         return await this.client
             .credentials()

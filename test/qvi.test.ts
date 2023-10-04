@@ -3,7 +3,6 @@ import { describe, expect, it } from '@jest/globals';
 import { anyOfClass, capture, instance, mock, verify, when } from 'ts-mockito';
 import { QVI } from '../src';
 import { Rules } from '../src/rules';
-import { LEvLEICredentialData, LEQVIEdge } from '../src/qvi/credentials/le';
 import {
     ECRAuthEdge,
     ECRAuthEdgeData as ECRAuthEdgeData,
@@ -14,6 +13,8 @@ import {
     OORAuthvLEIEdgeData as OORAuthEdgeData,
     OORvLEICredentialData,
 } from '../src/qvi/credentials/oor';
+import { credentials } from '../src/credentials';
+import { edges } from '../src/edges';
 
 describe('a qvi', () => {
     it('should create legal entity credential', () => {
@@ -24,12 +25,15 @@ describe('a qvi', () => {
 
         let client = instance(mockedClient);
         let qvi = new QVI(client, 'qvi_name', 'qvi_registry_aid');
-        let data = new LEvLEICredentialData({
+        let data = new credentials.LegalEntityCredentialData({
             LEI: 'an LEI',
             issuee: 'issuee',
             timestamp: 'timestamp',
         });
-        let edge = new LEQVIEdge('qvi_aid');
+        let edgeData = new edges.LegalEntityCredentialEdgeData({
+            qviCredentialSAID: 'said',
+        });
+        let edge = new edges.LegalEntityCredentialEdge({ qvi: edgeData });
 
         qvi.createLegalEntityCredential('issuee aid', data, edge);
 
@@ -41,9 +45,9 @@ describe('a qvi', () => {
                 'qvi_registry_aid',
                 'ENPXp1vQzRF6JwIuS-mp2U8Uf1MoADoP_GqQ62VsDZWY',
                 'issuee aid',
-                anyOfClass(LEvLEICredentialData),
+                anyOfClass(credentials.LegalEntityCredentialData),
                 Rules.LE,
-                anyOfClass(LEQVIEdge),
+                anyOfClass(edges.LegalEntityCredentialEdge),
                 false
             )
         ).once();
@@ -53,9 +57,9 @@ describe('a qvi', () => {
 
         let EDGE_ARG = 6;
         expect(cap[EDGE_ARG].d).toBe(
-            'EPfoOyfjSMVJhdiuq1wlcHR1XB7KMrgzziWZqL0iYWyZ'
+            'EBXFKc37aSCngzHUOX0Rfxq0l2JNS8SBDzzkHamXpkle'
         );
-        expect(cap[EDGE_ARG].qvi.n).toBe('qvi_aid');
+        expect(cap[EDGE_ARG].qvi.n).toBe('said');
         expect(cap[EDGE_ARG].qvi.s).toBe(
             'EBfdlu8R27Fbx-ehrqwImnK-8Cm79sqbAQ4MmvEAYqao'
         );

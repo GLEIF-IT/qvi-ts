@@ -2,7 +2,6 @@ import { SignifyClient } from 'signify-ts';
 import { Schema } from '../schema';
 import { Rules } from '../rules';
 import { ECRAuthvLEICredentialData } from './credentials/ecr-auth';
-import { ECRAuthEdge } from '../qvi/credentials/ecr';
 import { AID } from '..';
 import { OORAuthvLEICredentialData } from './credentials/oor-auth';
 import { OORAuthEdge } from '../qvi/credentials/oor';
@@ -43,7 +42,7 @@ export class LE {
     public async createECRAuthCredential(
         issuee: AID,
         data: ECRAuthvLEICredentialData,
-        edge: ECRAuthEdge
+        edge: LEEdge
     ) {
         return await this.client
             .credentials()
@@ -84,5 +83,26 @@ export class LE {
                 edge,
                 false
             );
+    }
+}
+
+export interface LEEdgeDataArgs {}
+
+export class LEEdgeData {
+    n: string;
+    s: string = '';
+
+    constructor() {}
+}
+
+export interface LEEdgeArgs {
+    edge: LEEdgeData;
+}
+
+export class LEEdge {
+    le: LEEdgeData;
+
+    constructor({ edge }: LEEdgeArgs) {
+        this.le = edge;
     }
 }
