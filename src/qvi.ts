@@ -38,13 +38,13 @@ export class QVI {
      * @param {AID} issuee
      * @param {credentials.LegalEntityCredentialData} data
      * @param {edges.LegalEntityCredentialEdge} edge
-     * @returns
+     * @returns {Promise<any>} A promise to the long-running operation
      */
     public async createLegalEntityCredential(
         issuee: AID,
         data: credentials.LegalEntityCredentialData,
         edge: edges.LegalEntityCredentialEdge
-    ) {
+    ): Promise<any> {
         return await this.client
             .credentials()
             .issue(
@@ -63,15 +63,15 @@ export class QVI {
      * Create Engagement Context Role Credential
      *
      * @param {AID} issuee
-     * @param {ECRvLEICredentialData} data
-     * @param {ECRAuthEdge} edge
-     * @returns
+     * @param {credentials.EngagementContextRoleCredentialData} data
+     * @param {edges.EngagementContextRoleCredentialEdge} edge
+     * @returns {Promise<any>} A promise to the long-running operation
      */
     public async createEngagementContextRoleCredential(
         issuee: AID,
         data: credentials.EngagementContextRoleCredentialData,
         edge: edges.EngagementContextRoleCredentialEdge
-    ) {
+    ): Promise<any> {
         return await this.client
             .credentials()
             .issue(
@@ -90,15 +90,15 @@ export class QVI {
      * Create Official Organizational Role Credential
      *
      * @param {AID} issuee
-     * @param {OORvLEICredentialData} data
-     * @param {OORAuthvLEICredentialData} edge
-     * @returns
+     * @param {credentials.OfficialOrganizationalRoleCredentialData} data
+     * @param {edges.OfficialOrganizationalRoleCredentialEdge} edge
+     * @returns {Promise<any>} A promise to the long-running operation
      */
     public async createOfficialOrganizationRoleCredential(
         issuee: AID,
         data: credentials.OfficialOrganizationalRoleCredentialData,
         edge: edges.OfficialOrganizationalRoleCredentialEdge
-    ) {
+    ): Promise<any> {
         return await this.client
             .credentials()
             .issue(

@@ -20,6 +20,8 @@ namespace credentials {
     /**
      * LegalEntityCredentialData
      *
+     * {@link https://raw.githubusercontent.com/WebOfTrust/vLEI/dev/schema/acdc/legal-entity-vLEI-credential.json}
+     * 
      * @property {d string} digest of {@link LegalEntityCredentialData} block
      * @property {i AID} AID of credential issuee
      * @property {dt string} Date-time stamp
@@ -68,6 +70,8 @@ namespace credentials {
     /**
      * EngagementContextRoleCredentialData
      *
+     * {@link https://raw.githubusercontent.com/WebOfTrust/vLEI/dev/schema/acdc/legal-entity-engagement-context-role-vLEI-credential.json}
+     * 
      * @property {d string} QVI Issuee AID
      * @property {u string} Issuance date time
      * @property {i AID} Person Issuee AID
@@ -135,6 +139,7 @@ namespace credentials {
     /**
      * EngagementContextRoleAuthorizationCredentialData
      *
+     * {@link https://raw.githubusercontent.com/WebOfTrust/vLEI/dev/schema/acdc/ecr-authorization-vlei-credential.json}
      *
      * @property {d string} SAID of EngagementContextRoleAuthorizationCredentialData
      * @property {i string} QVI Issuee AID
@@ -203,6 +208,8 @@ namespace credentials {
     /**
      * OfficialOrganizationalRoleCredentialData
      *
+     * {@link https://raw.githubusercontent.com/WebOfTrust/vLEI/dev/schema/acdc/legal-entity-official-organizational-role-vLEI-credential.json}
+     * 
      * @property {d string} QVI Issuee AID
      * @property {u string} Issuance date time
      * @property {i AID} Person Issuee AID
@@ -270,6 +277,8 @@ namespace credentials {
     /**
      * OfficialOrganizationalRoleAuthorizationCredentialData
      *
+     * {@link https://raw.githubusercontent.com/WebOfTrust/vLEI/dev/schema/acdc/oor-authorization-vlei-credential.json}
+     * 
      * @property {d string} SAID of EngagementContextRoleAuthorizationCredentialData
      * @property {i string} QVI Issuee AID
      * @property {dt string} Issuance date time

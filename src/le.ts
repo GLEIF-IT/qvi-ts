@@ -36,13 +36,13 @@ export class LE {
      * @param {AID} issuee AID of QVI
      * @param {credentials.EngagementContextRoleAuthorizationCredentialData} data
      * @param {edges.EngagementContextRoleAuthorizationEdge} edge}
-     * @returns
+     * @returns {Promise<any>} A promise to the long-running operation
      */
     public async createECRAuthCredential(
         issuee: AID,
         data: credentials.EngagementContextRoleAuthorizationCredentialData,
         edge: edges.EngagementContextRoleAuthorizationEdge
-    ) {
+    ): Promise<any> {
         return await this.client
             .credentials()
             .issue(
@@ -63,13 +63,13 @@ export class LE {
      * @param {AID} issuee AID of QVI
      * @param {credentials.OfficialOrganizationalRoleAuthorizationCredentialData} data
      * @param {edges.OfficialOrganizationalRoleAuthorizationCredentialEdge} edge}
-     * @returns
+     * @returns {Promise<any>} A promise to the long-running operation
      */
     public async createOORAuthCredential(
         issuee: AID,
         data: credentials.OfficialOrganizationalRoleAuthorizationCredentialData,
         edge: edges.OfficialOrganizationalRoleAuthorizationEdge
-    ) {
+    ): Promise<any> {
         return await this.client
             .credentials()
             .issue(
