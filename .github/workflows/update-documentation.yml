@@ -12,7 +12,9 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+        with:
+          ref: docs
 
       - uses: actions/setup-node@v2
         with:
@@ -23,9 +25,9 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
+          git rebase main
           yarn
           yarn typedoc src/index.ts
-          git checkout docs
           git add .
           git commit -a -m "Update documentation"
 
