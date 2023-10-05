@@ -35,13 +35,13 @@ export class LE {
      *
      * @param {AID} issuee AID of QVI
      * @param {credentials.EngagementContextRoleAuthorizationCredentialData} data
-     * @param {edges.EngagementContextRoleAuthorizationCredentialEdgeData} edge}
+     * @param {edges.EngagementContextRoleAuthorizationEdge} edge}
      * @returns
      */
     public async createECRAuthCredential(
         issuee: AID,
         data: credentials.EngagementContextRoleAuthorizationCredentialData,
-        edge: edges.EngagementContextRoleAuthorizationCredentialEdgeData
+        edge: edges.EngagementContextRoleAuthorizationEdge
     ) {
         return await this.client
             .credentials()
@@ -62,13 +62,13 @@ export class LE {
      *
      * @param {AID} issuee AID of QVI
      * @param {credentials.OfficialOrganizationalRoleAuthorizationCredentialData} data
-     * @param {edges.OfficialOrganizationalRoleAuthorizationCredentialEdgeData} edge}
+     * @param {edges.OfficialOrganizationalRoleAuthorizationCredentialEdge} edge}
      * @returns
      */
     public async createOORAuthCredential(
         issuee: AID,
         data: credentials.OfficialOrganizationalRoleAuthorizationCredentialData,
-        edge: edges.OfficialOrganizationalRoleAuthorizationCredentialEdgeData
+        edge: edges.OfficialOrganizationalRoleAuthorizationEdge
     ) {
         return await this.client
             .credentials()
