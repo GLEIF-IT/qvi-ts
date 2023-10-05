@@ -1,107 +1,125 @@
 import { describe, expect, it } from '@jest/globals';
+import { Credentials, SignifyClient } from 'signify-ts';
+import { anyOfClass, capture, instance, mock, verify, when } from 'ts-mockito';
+import { LE, credentials, edges } from '../src';
+import { rules } from '../src/rules';
 
 describe('a legal entity', () => {
     it('should create ecr auth credential', () => {
-        expect(true).toBe(true);
-        // let mockedClient: SignifyClient = mock(SignifyClient);
+        let mockedClient: SignifyClient = mock(SignifyClient);
 
-        // let c: Credentials = mock(Credentials);
-        // when(mockedClient.credentials()).thenReturn(instance(c));
+        let c: Credentials = mock(Credentials);
+        when(mockedClient.credentials()).thenReturn(instance(c));
 
-        // let client = instance(mockedClient);
-        // let le = new LE(client, 'qvi_name', 'qvi_registry_aid');
+        let client = instance(mockedClient);
+        let le = new LE(client, 'qvi_name', 'qvi_registry_aid');
+        let data =
+            new credentials.EngagementContextRoleAuthorizationCredentialData({
+                qviAID: 'issueing to this qvi',
+                timestamp: 'time stamp',
+                issuee: 'ecr is meant for this aid',
+                LEI: 'LEI',
+                personLegalName: 'legal name',
+                engagementContextRole: 'my context role',
+            });
+        let edgeData =
+            new edges.EngagementContextRoleAuthorizationCredentialEdgeData({
+                legalEntityCredentialSAID: 'said',
+            });
+        let edge = new edges.EngagementContextRoleAuthorizationEdge({
+            le: edgeData,
+        });
 
-        // let data = new ECRAuthvLEICredentialData({
-        //     qviAID: 'qvi_aid',
-        //     timestamp: 'timestamp',
-        //     recipient: 'recipient',
-        //     LEI: 'lei',
-        //     personLegalName: 'my legal name',
-        //     engagementContextRole: 'context role',
-        // });
-        // let auth = new ECRAuthEdgeData({ leCredentialSAID: 'a said' });
-        // let edge = new ECRAuthEdge({ auth: auth });
+        le.createECRAuthCredential('issuee aid', data, edge);
 
-        // le.createECRAuthCredential('issuee aid', data, edge);
+        let cap = capture(c.issue).last();
 
-        // let cap = capture(c.issue).last();
+        verify(
+            c.issue(
+                'qvi_name',
+                'qvi_registry_aid',
+                'EH6ekLjSr8V32WyFbGe1zXjTzFs9PkTYmupJ9H65O14g',
+                'issuee aid',
+                anyOfClass(
+                    credentials.EngagementContextRoleAuthorizationCredentialData
+                ),
+                rules.ECRAuth,
+                anyOfClass(edges.EngagementContextRoleAuthorizationEdge),
+                false
+            )
+        ).once();
 
-        // verify(
-        //     c.issue(
-        //         'qvi_name',
-        //         'qvi_registry_aid',
-        //         'EH6ekLjSr8V32WyFbGe1zXjTzFs9PkTYmupJ9H65O14g',
-        //         'issuee aid',
-        //         anyOfClass(ECRAuthvLEICredentialData),
-        //         Rules.ECRAuth,
-        //         anyOfClass(ECRAuthEdge),
-        //         false
-        //     )
-        // ).once();
+        let DATA_ARG = 4;
+        expect(cap[DATA_ARG].LEI).toBe('LEI');
 
-        // let DATA_ARG = 4;
-        // expect(cap[DATA_ARG].LEI).toBe('lei');
-
-        // let EDGE_ARG = 6;
-        // expect(cap[EDGE_ARG].d).toBe(
-        //     'ENbbrJVx-rr8V7HzNmnrwt6OUaYD0sB-S-gxclr0TSM8'
-        // );
-        // expect(cap[EDGE_ARG].auth.n).toBe('a said');
-        // expect(cap[EDGE_ARG].auth.s).toBe(
-        //     'ENPXp1vQzRF6JwIuS-mp2U8Uf1MoADoP_GqQ62VsDZWY'
-        // );
+        let EDGE_ARG = 6;
+        expect(cap[EDGE_ARG].d).toBe(
+            'EBlx5jE_cpbCQtypw1WLST-9Dz_PaNoRhgSIma7rWr0L'
+        );
+        expect(cap[EDGE_ARG].le.n).toBe('said');
+        expect(cap[EDGE_ARG].le.s).toBe(
+            'ENPXp1vQzRF6JwIuS-mp2U8Uf1MoADoP_GqQ62VsDZWY'
+        );
     });
 
     it('should create oor auth credential', () => {
-        expect(true).toBe(true);
-        // let mockedClient: SignifyClient = mock(SignifyClient);
+        let mockedClient: SignifyClient = mock(SignifyClient);
 
-        // let c: Credentials = mock(Credentials);
-        // when(mockedClient.credentials()).thenReturn(instance(c));
+        let c: Credentials = mock(Credentials);
+        when(mockedClient.credentials()).thenReturn(instance(c));
 
-        // let client = instance(mockedClient);
-        // let le = new LE(client, 'qvi_name', 'qvi_registry_aid');
+        let client = instance(mockedClient);
+        let le = new LE(client, 'qvi_name', 'qvi_registry_aid');
+        let data =
+            new credentials.OfficialOrganizationalRoleAuthorizationCredentialData(
+                {
+                    qviAID: 'issueing to this qvi',
+                    timestamp: 'time stamp',
+                    issuee: 'oor is meant for this aid',
+                    LEI: 'LEI',
+                    personLegalName: 'legal name',
+                    officialOrganizationalRole: 'my official role',
+                }
+            );
+        let edgeData =
+            new edges.OfficialOrganizationalRoleAuthorizationCredentialEdgeData(
+                {
+                    legalEntityCredentialSAID: 'said',
+                }
+            );
+        let edge = new edges.OfficialOrganizationalRoleAuthorizationEdge({
+            le: edgeData,
+        });
 
-        // let data = new OORAuthvLEICredentialData({
-        //     qviAID: 'qvi_aid',
-        //     timestamp: 'timestamp',
-        //     recipient: 'recipient',
-        //     LEI: 'lei',
-        //     personLegalName: 'my legal name',
-        //     officialOrganizationalRole: 'official role',
-        // });
-        // let auth = new OORAuthvLEIEdgeData({
-        //     leCredentialSAID: 'legal_entity_aid',
-        // });
-        // let edge = new OORAuthEdge({ auth: auth });
+        le.createOORAuthCredential('issuee aid', data, edge);
 
-        // le.createOORAuthCredential('issuee aid', data, edge);
+        let cap = capture(c.issue).last();
 
-        // let cap = capture(c.issue).last();
+        verify(
+            c.issue(
+                'qvi_name',
+                'qvi_registry_aid',
+                'EKA57bKBKxr_kN7iN5i7lMUxpMG-s19dRcmov1iDxz-E',
+                'issuee aid',
+                anyOfClass(
+                    credentials.OfficialOrganizationalRoleAuthorizationCredentialData
+                ),
+                rules.OORAuth,
+                anyOfClass(edges.OfficialOrganizationalRoleAuthorizationEdge),
+                false
+            )
+        ).once();
 
-        // verify(
-        //     c.issue(
-        //         'qvi_name',
-        //         'qvi_registry_aid',
-        //         'EKA57bKBKxr_kN7iN5i7lMUxpMG-s19dRcmov1iDxz-E',
-        //         'issuee aid',
-        //         anyOfClass(OORAuthvLEICredentialData),
-        //         Rules.OORAuth,
-        //         anyOfClass(OORAuthEdge),
-        //         false
-        //     )
-        // ).once();
+        let DATA_ARG = 4;
+        expect(cap[DATA_ARG].LEI).toBe('LEI');
 
-        // let DATA_ARG = 4;
-        // expect(cap[DATA_ARG].LEI).toBe('lei');
-
-        // let EDGE_ARG = 6;
-        // expect(cap[EDGE_ARG].d).toBe(
-        //     'ED1dQiXEfyqMu2sh1zz7RMv5GP4g5b8YGMLrNdIht-TP'
-        // );
-        // expect(cap[EDGE_ARG].auth.n).toBe('legal_entity_aid');
-        // expect(cap[EDGE_ARG].auth.s).toBe(
-        //     'ENPXp1vQzRF6JwIuS-mp2U8Uf1MoADoP_GqQ62VsDZWY'
-        // );
+        let EDGE_ARG = 6;
+        expect(cap[EDGE_ARG].d).toBe(
+            'EBlx5jE_cpbCQtypw1WLST-9Dz_PaNoRhgSIma7rWr0L'
+        );
+        expect(cap[EDGE_ARG].le.n).toBe('said');
+        expect(cap[EDGE_ARG].le.s).toBe(
+            'ENPXp1vQzRF6JwIuS-mp2U8Uf1MoADoP_GqQ62VsDZWY'
+        );
     });
 });
