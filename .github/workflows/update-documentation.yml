@@ -6,15 +6,13 @@ on:
   workflow_dispatch:
 jobs:
   update:
-    name: Updater documentation
+    name: Update documentation
 
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
-        with:
-          ref: docs
 
       - uses: actions/setup-node@v2
         with:
