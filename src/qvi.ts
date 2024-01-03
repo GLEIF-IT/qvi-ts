@@ -82,7 +82,7 @@ export class QVI {
                 data,
                 rules.ECR,
                 edge,
-                false
+                true
             );
     }
 

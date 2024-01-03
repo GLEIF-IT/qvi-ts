@@ -92,7 +92,7 @@ describe('a qvi', () => {
                 anyOfClass(credentials.EngagementContextRoleCredentialData),
                 rules.ECR,
                 anyOfClass(edges.EngagementContextRoleCredentialEdge),
-                false
+                true
             )
         ).once();
 
