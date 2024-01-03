@@ -64,7 +64,7 @@ describe('edges', () => {
         let data =
             new edges.OfficialOrganizationalRoleAuthorizationCredentialEdgeData(
                 {
-                    legalEntityCredentialSAID: 'my ecr auth credential said',
+                    legalEntityCredentialSAID: 'my oor auth credential said',
                 }
             );
 
@@ -72,8 +72,8 @@ describe('edges', () => {
             le: data,
         });
 
-        expect(edge.d).toBe('EFmitYRo5Dgijnr0rtQ0QW0A-MGPxozV3e4F6BUSVWSR');
-        expect(edge.le.n).toBe('my ecr auth credential said');
+        expect(edge.d).toBe('EMC_mzR4FVVwme-ZQg9hpEuSVIRc7sbp4skM4TYfbj2v');
+        expect(edge.le.n).toBe('my oor auth credential said');
         expect(edge.le.s).toBe(schema.LE);
     });
 });
