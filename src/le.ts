@@ -83,4 +83,31 @@ export class LE {
                 false
             );
     }
+
+    /**
+     * Create Engagement Context Role Credential directly from LE
+     *
+     * @param {AID} issuee
+     * @param {credentials.EngagementContextRoleCredentialData} data
+     * @param {edges.DirectEngagementContextRoleCredentialEdge} edge
+     * @returns {Promise<any>} A promise to the long-running operation
+     */
+    public async createDirectEngagementContextRoleCredential(
+        issuee: AID,
+        data: credentials.EngagementContextRoleCredentialData,
+        edge: edges.DirectEngagementContextRoleCredentialEdge
+    ): Promise<any> {
+        return await this.client
+            .credentials()
+            .issue(
+                this.name,
+                this.registryAID,
+                schema.ECR,
+                issuee,
+                data,
+                rules.ECR,
+                edge,
+                true
+            );
+    }
 }

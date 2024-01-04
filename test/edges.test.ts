@@ -30,6 +30,21 @@ describe('edges', () => {
         expect(edge.auth.s).toBe(schema.ECRAuth);
     });
 
+    it('should create direct engagement context role credential edge', () => {
+        let data = new edges.DirectEngagementContextRoleCredentialEdgeData({
+            legalEntityCredentialSAID:
+                'my ecr auth credential said',
+        });
+
+        let edge = new edges.DirectEngagementContextRoleCredentialEdge({
+            le: data,
+        });
+
+        expect(edge.d).toBe('EFmitYRo5Dgijnr0rtQ0QW0A-MGPxozV3e4F6BUSVWSR');
+        expect(edge.le.n).toBe('my ecr auth credential said');
+        expect(edge.le.s).toBe(schema.LE);
+    });
+
     it('should create official organizational role credential edge', () => {
         let data = new edges.OfficialOrganizationalRoleCredentialEdgeData({
             officialOrganizationalRoleAuthorizationCredentialSAID:
