@@ -160,7 +160,7 @@ describe('a legal entity', () => {
                 anyOfClass(credentials.EngagementContextRoleCredentialData),
                 rules.ECR,
                 anyOfClass(edges.DirectEngagementContextRoleCredentialEdge),
-                false
+                true
             )
         ).once();
 
