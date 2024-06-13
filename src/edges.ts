@@ -121,6 +121,66 @@ namespace edges {
     }
 
     /**
+     * DirectEngagementContextRoleEdgeArgs
+     *
+     * Parameters for {@link DirectEngagementContextRoleCredentialEdge}
+     *
+     * @property {le DirectEngagementContextRoleCredentialEdgeData} data for the edge
+     */
+    export interface DirectEngagementContextRoleCredentialEdgeArgs {
+        le: DirectEngagementContextRoleCredentialEdgeData;
+    }
+
+    /**
+     * DirectEngagementContextRoleEdge
+     *
+     * Used as edge property for {@link createDirectEngagementContextRoleCredential}
+     *
+     * @property {d string} digest of {@link DirectEngagementContextRoleCredentialEdge} block
+     * @property {le DirectEngagementContextRoleCredentialEdgeData} nested block of {@link DirectEngagementContextRoleEdgeData}
+     */
+    export class DirectEngagementContextRoleCredentialEdge {
+        readonly d: string;
+        readonly le: DirectEngagementContextRoleCredentialEdgeData;
+
+        constructor({ le }: DirectEngagementContextRoleCredentialEdgeArgs) {
+            this.d = Saider.saidify({ d: '', le: le })[1]['d'];
+            this.le = le;
+        }
+    }
+
+    /**
+     * DirectEngagementContextRoleCredentialEdgeDataArgs
+     *
+     * Parameters for {@link DirectEngagementContextRoleCredentialEdgeData}
+     *
+     * @property {legalEntityCredentialSAID string} SAID of previously issued Legal Entity credential
+     */
+    export interface DirectEngagementContextRoleCredentialEdgeDataArgs {
+        legalEntityCredentialSAID: string;
+    }
+
+    /**
+     * DirectEngagementContextRoleCredentialEdgeData
+     *
+     * Nested property for {@link DirectEngagementContextRoleCredentialEdge}
+     *
+     * @property {n string} SAID of previously issued Legal Entity credential
+     * @property {s string} SAID of Legal Entity credential schema
+     */
+    export class DirectEngagementContextRoleCredentialEdgeData {
+        n: string;
+        s: string;
+
+        constructor({
+            legalEntityCredentialSAID,
+        }: DirectEngagementContextRoleCredentialEdgeDataArgs) {
+            this.n = legalEntityCredentialSAID;
+            this.s = schema.LE;
+        }
+    }
+
+    /**
      * EngagementContextRoleAuthorizationEdgeArgs
      *
      * Parameters for {@link EngagementContextRoleAuthorizationEdge}

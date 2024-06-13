@@ -122,4 +122,58 @@ describe('a legal entity', () => {
             'ENPXp1vQzRF6JwIuS-mp2U8Uf1MoADoP_GqQ62VsDZWY'
         );
     });
+
+    it('should create direct engagement context role credential', () => {
+        let mockedClient: SignifyClient = mock(SignifyClient);
+
+        let c: Credentials = mock(Credentials);
+        when(mockedClient.credentials()).thenReturn(instance(c));
+
+        let client = instance(mockedClient);
+        let le = new LE(client, 'le_name', 'le_registry_aid');
+        let data = new credentials.EngagementContextRoleCredentialData({
+            issuee: 'issuee',
+            nonce: 'nonce',
+            timestamp: 'timestamp',
+            LEI: 'an LEI',
+            personLegalName: 'person legal name',
+            engagementContextRole: 'my context role',
+        });
+        let edgeData =
+            new edges.DirectEngagementContextRoleCredentialEdgeData({
+                legalEntityCredentialSAID: 'a SAID',
+            });
+        let edge = new edges.DirectEngagementContextRoleCredentialEdge({
+            le: edgeData,
+        });
+
+        le.createDirectEngagementContextRoleCredential('issuee aid', data, edge);
+
+        let cap = capture(c.issue).last();
+
+        verify(
+            c.issue(
+                'le_name',
+                'le_registry_aid',
+                'EEy9PkikFcANV1l7EHukCeXqrzT1hNZjGlUk7wuMO5jw',
+                'issuee aid',
+                anyOfClass(credentials.EngagementContextRoleCredentialData),
+                rules.ECR,
+                anyOfClass(edges.DirectEngagementContextRoleCredentialEdge),
+                true
+            )
+        ).once();
+
+        let DATA_ARG = 4;
+        expect(cap[DATA_ARG].LEI).toBe('an LEI');
+
+        let EDGE_ARG = 6;
+        expect(cap[EDGE_ARG].d).toBe(
+            'ECz2B-zXe2GADR_sZ9WEjaf1WXPKcOBBdW6Qeb6TIkoA'
+        );
+        expect(cap[EDGE_ARG].le.n).toBe('a SAID');
+        expect(cap[EDGE_ARG].le.s).toBe(
+            'ENPXp1vQzRF6JwIuS-mp2U8Uf1MoADoP_GqQ62VsDZWY'
+        );
+    });
 });
