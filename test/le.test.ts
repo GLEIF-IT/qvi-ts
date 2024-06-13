@@ -15,7 +15,7 @@ describe('a legal entity', () => {
         let le = new LE(client, 'qvi_name', 'qvi_registry_aid');
         let data =
             new credentials.EngagementContextRoleAuthorizationCredentialData({
-                qviAID: 'issueing to this qvi',
+                qviAID: 'issuing to this qvi',
                 timestamp: 'time stamp',
                 issuee: 'ecr is meant for this aid',
                 LEI: 'LEI',
@@ -73,7 +73,7 @@ describe('a legal entity', () => {
         let data =
             new credentials.OfficialOrganizationalRoleAuthorizationCredentialData(
                 {
-                    qviAID: 'issueing to this qvi',
+                    qviAID: 'issuing to this qvi',
                     timestamp: 'time stamp',
                     issuee: 'oor is meant for this aid',
                     LEI: 'LEI',
